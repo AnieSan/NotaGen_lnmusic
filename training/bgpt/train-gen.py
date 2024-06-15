@@ -169,6 +169,7 @@ def train_epoch(epoch):
         lr_scheduler.step()
         model.zero_grad(set_to_none=True)
         tqdm_train_set.set_postfix({str(global_rank)+'_train_loss': total_train_loss / iter_idx})
+        train_steps += 1
 
         # Log the training loss to wandb
         if global_rank==0 and WANDB_LOGGING:
@@ -201,6 +202,7 @@ if __name__ == "__main__":
     
     # Initialize wandb
     if WANDB_LOGGING and global_rank==0:
+        wandb.login(key='de0a8f1601fe2960599d99554cbf0a2778d15604')
         wandb.init(project="byte-gpt",
                    name="p_size_"+str(PATCH_SIZE)+
                         " p_length_"+str(PATCH_LENGTH)+
