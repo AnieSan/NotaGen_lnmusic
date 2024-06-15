@@ -67,6 +67,13 @@ scaler = GradScaler()
 is_autocast = True
 optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
     
+def split_data(data, eval_ratio=EVAL_SPLIT):
+    random.shuffle(data)
+    split_idx = int(len(data)*eval_ratio)
+    eval_set = data[:split_idx]
+    train_set = data[split_idx:]
+    return train_set, eval_set
+
 def collate_batch(input_batches):
     
     input_patches, input_masks = zip(*input_batches)
@@ -100,8 +107,12 @@ def read_bytes(filename):
     ext = bytearray(ext, 'utf-8')
     ext = [byte for byte in ext][:PATCH_SIZE]
 
-    with open(filename, 'rb') as f:
+    with open(filename, 'r') as f:
         file_bytes = f.read()
+        
+    # key = random_key()
+    # file_bytes = transpose(file_bytes, key)
+    # file_bytes = rotate(file_bytes)
 
     bytes = []
     for byte in file_bytes:
@@ -127,6 +138,7 @@ class ByteDataset(Dataset):
     def __getitem__(self, idx):
         
         filename = self.filenames[idx]
+        filename =  random.choices(filename)
         file_bytes, file_masks = read_bytes(filename)
 
         file_bytes = torch.tensor(file_bytes, dtype=torch.long)
@@ -210,10 +222,21 @@ if __name__ == "__main__":
                         " p_layers_"+str(PATCH_NUM_LAYERS)+
                         " h_size_"+str(HIDDEN_SIZE))
         
-    # load filenames under train and eval folder
-    train_files = list_files_in_directory(TRAIN_FOLDERS)
-    eval_files = list_files_in_directory(EVAL_FOLDERS)
+    # # load filenames under train and eval folder
+    # train_files = list_files_in_directory(TRAIN_FOLDERS)
+    # eval_files = list_files_in_directory(EVAL_FOLDERS)
+    
+    # load data
+    with open("04_duplicated_files.jsonl", "r", encoding="utf-8") as f:
+        print("Loading Data...")
+        train_files = []
+        eval_files = []
+        for line in f:
+            train_files.append(json.loads(line))
 
+    if len(eval_files)==0:
+        train_files, eval_files = split_data(train_files)
+       
     train_batch_nums = int(len(train_files) / batch_size)
     eval_batch_nums = int(len(eval_files) / batch_size)
 
