@@ -14,6 +14,8 @@ EVAL_FOLDERS = [
                 # "data/pretrain_tunesformer_transposed_data_piano_deduplicated/test"
                 ]                                               # Folder containing evaluation data
 
+EVAL_SPLIT = 0.01
+
 # Configuration for the paths
 PRE_WEIGHTS_PATH = "weights_bgpt_pretrain_musescore_v240612.pth"                           # Path to pre-trained weights
 WEIGHTS_PATH     = "weights_bgpt_pretrain_musescore_v240612.pth"                        # Path to save weights
