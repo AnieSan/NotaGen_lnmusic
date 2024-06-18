@@ -17,6 +17,9 @@ from abctoolkit.convert import unidecode_abc_lines
 from abctoolkit.rotate import rotate_abc
 from abctoolkit.check import check_alignment_unrotated
 
+ORI_FOLDER = '03_abc/mmd'
+DES_FOLDER = '07_abc_rotated_CLAMP/mmd'
+
 def abc_pipeline(abc_path):
 
     with open(abc_path, 'r', encoding='utf-8') as f:
@@ -90,4 +93,49 @@ def abc_pipeline(abc_path):
     des_path = os.path.join(DES_FOLDER, os.path.split(abc_path)[-1])
     with open(des_path, 'w', encoding='utf-8') as w:
         w.writelines(rotated_abc_lines)
+
+
+def abc_pipeline_list(abc_path_list):
+    for abc_path in tqdm(abc_path_list):
+        try:
+            abc_pipeline(abc_path)
+        except Exception as e:
+            # print(abc_path, e)
+            pass
+
+
+def batch_abc_pipeline():
+
+    abc_path_list = []
+    count = 0
+    for abc_path in find_all_abc(ORI_FOLDER):
+        count += 1
+        if count % 10000 == 0:
+            print(count)
+
+        if os.path.getsize(abc_path) == 0:
+            continue
+
+        file = os.path.split(abc_path)[-1]
+        filename = os.path.splitext(file)[0]
+
+        abc_path_list.append(abc_path)
+
+    print(len(abc_path_list))
+
+    num_cpus = os.cpu_count()
+    split_lists = [[] for _ in range(num_cpus)]
+    index = 0
+
+    for abc_path in abc_path_list:
+        split_lists[index].append(abc_path)
+        index = (index + 1) % num_cpus
+
+    pool = Pool(processes=num_cpus)
+    pool.map(abc_pipeline_list, split_lists)
+
+
+if __name__ == '__main__':
+    batch_abc_pipeline()
+
 ```
