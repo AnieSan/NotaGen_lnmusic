@@ -11,6 +11,11 @@ batch_transpose(ori_folder=r'D:\Research\Projects\MultitrackComposer\dataset\06_
 ## 数据预处理
 ### CLAMP数据
 ```python
+import os
+import re
+import shutil
+from multiprocessing import Pool
+from tqdm import tqdm
 from abctoolkit.utils import (find_all_abc, remove_information_field, remove_bar_no_annotations, Quote_re, Barlines,
                    strip_empty_bars)
 from abctoolkit.convert import unidecode_abc_lines
