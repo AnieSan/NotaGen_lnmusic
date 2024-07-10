@@ -21,9 +21,22 @@ from abctoolkit.utils import (find_all_abc, remove_information_field, remove_bar
 from abctoolkit.convert import unidecode_abc_lines
 from abctoolkit.rotate import rotate_abc
 from abctoolkit.check import check_alignment_unrotated
+from abctoolkit.transpose import transpose_to_abc_lines, Key2index
 
-ORI_FOLDER = '03_abc/mmd'
-DES_FOLDER = '07_abc_rotated_CLAMP/mmd'
+KEY_AUGMENT = True
+
+ORI_FOLDER = '03_abc/eval'
+DES_FOLDER = '10_abc_rotated/eval'
+
+if not os.path.exists(DES_FOLDER):
+    os.mkdir(DES_FOLDER)
+
+if KEY_AUGMENT:
+    for key in Key2index.keys():
+        key_folder = os.path.join(DES_FOLDER, key)
+        if not os.path.exists(key_folder):
+            os.mkdir(key_folder)
+
 
 def abc_pipeline(abc_path):
 
@@ -77,7 +90,7 @@ def abc_pipeline(abc_path):
     # 省略：text_annotation 处理
 
     # 检查小节数、小节线、小节时值是否对齐
-    _, bar_no_equal_flag, bar_dur_equal_flag = check_alignment_unrotated(abc_lines)
+    _, bar_no_equal_flag, bar_dur_equal_flag = check_alignment_unrotated(stripped_abc_lines)
     if not bar_no_equal_flag:
         print(abc_path, 'Unequal bar number')
         return
@@ -85,19 +98,41 @@ def abc_pipeline(abc_path):
         print(abc_path, 'Unequal bar duration (unaligned)')
         return
 
-    # 转置
-    try:
-        rotated_abc_lines = rotate_abc(stripped_abc_lines)
-    except Exception as e:
-        print(abc_path, 'Error in rotating:', e)
-        return
-    if rotated_abc_lines is None:
-        print(abc_path, 'Failed to rotate')
-        return
+    # 移调
+    if KEY_AUGMENT:
+        for key in Key2index.keys():
+            transposed_abc_lines = transpose_to_abc_lines(stripped_abc_lines, key)
 
-    des_path = os.path.join(DES_FOLDER, os.path.split(abc_path)[-1])
-    with open(des_path, 'w', encoding='utf-8') as w:
-        w.writelines(rotated_abc_lines)
+            # 转置
+            try:
+                rotated_abc_lines = rotate_abc(transposed_abc_lines)
+            except Exception as e:
+                print(abc_path, 'Error in rotating:', e)
+                return
+            if rotated_abc_lines is None:
+                print(abc_path, 'Failed to rotate')
+                return
+
+            abc_name = os.path.splitext(os.path.split(abc_path)[-1])[0]
+            transposed_abc_name = abc_name + '_' + key
+            des_path = os.path.join(DES_FOLDER, key, transposed_abc_name + '.abc')
+            with open(des_path, 'w', encoding='utf-8') as w:
+                w.writelines(rotated_abc_lines)
+
+    else:
+        # 转置
+        try:
+            rotated_abc_lines = rotate_abc(stripped_abc_lines)
+        except Exception as e:
+            print(abc_path, 'Error in rotating:', e)
+            return
+        if rotated_abc_lines is None:
+            print(abc_path, 'Failed to rotate')
+            return
+
+        des_path = os.path.join(DES_FOLDER, os.path.split(abc_path)[-1])
+        with open(des_path, 'w', encoding='utf-8') as w:
+            w.writelines(rotated_abc_lines)
 
 
 def abc_pipeline_list(abc_path_list):
@@ -109,7 +144,11 @@ def abc_pipeline_list(abc_path_list):
             pass
 
 
+
 def batch_abc_pipeline():
+
+    if not os.path.exists(DES_FOLDER):
+        os.mkdir(DES_FOLDER)
 
     abc_path_list = []
     count = 0
