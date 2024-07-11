@@ -7,6 +7,62 @@ from transformers import GPT2Config, LlamaConfig
 from abctoolkit.utils import extract_metadata_and_tunebody_rotated
 
 
+def time_unreduce(abc_text):
+    # unreduce
+    abc_lines = abc_text.split('\n')
+    
+    tunebody_index = None
+    for i in range(len(abc_lines)):
+        if abc_lines[i].startswith('[r:'):
+            tunebody_index = i
+            break
+
+    metadata_lines = abc_lines[ : tunebody_index]
+    tunebody_lines = abc_lines[tunebody_index : ]
+
+    part_symbol_list = []
+    for line in metadata_lines:
+        if line.startswith('V:'):
+            part_symbol_list.append(line.split()[0])
+    # part_symbol_list = sorted(part_symbol_list)
+
+    last_visible_bar = {}
+    for symbol in part_symbol_list:
+        last_visible_bar[symbol] = None
+
+    unreduced_tunebody_lines = []
+
+    for i, line in enumerate(tunebody_lines):
+        unreduced_line = ''
+        match = re.match(r'^\[r:\d+\]', line)
+        if match:
+            line_annotation = match.group(0)
+            unreduced_line += line_annotation
+
+        pattern = r'\[V:(\d+)\](.*?)(?=\[V:|$)'
+        matches = re.findall(pattern, line)
+        
+        line_bar_dict = {}
+        for match in matches:
+            key = f'V:{match[0]}'
+            value = match[1]
+            line_bar_dict[key] = value
+
+        for symbol in part_symbol_list:
+            if symbol in line_bar_dict.keys():
+                symbol_bartext = line_bar_dict[symbol]
+                last_visible_bar[symbol] = symbol_bartext
+            else:
+                symbol_bartext = last_visible_bar[symbol]
+            unreduced_line += '[' + symbol + ']' + symbol_bartext
+        
+        unreduced_tunebody_lines.append(unreduced_line)
+
+    unreduced_lines = metadata_lines + unreduced_tunebody_lines
+    unreduced_abc_text = '\n'.join(unreduced_lines)
+
+    return unreduced_abc_text
+
 
 
 if torch.cuda.is_available():    
@@ -29,7 +85,7 @@ elif PATCH_DECODER_STRUCTURE == 'llama':
     patch_config = LlamaConfig(num_hidden_layers=PATCH_NUM_LAYERS,
                                max_length=PATCH_LENGTH, 
                                max_position_embeddings=PATCH_LENGTH,
-                               hidden_size=768,
+                               hidden_size=HIDDEN_SIZE,
                                num_attention_heads=HIDDEN_SIZE//64, 
                                intermediate_size=HIDDEN_SIZE*4,
                                vocab_size=1)
@@ -125,8 +181,14 @@ for i in files:
             # print(byte_list)
 
     byte_list = byte_list[prefix_len:]
-    # print(''.join(byte_list))
+    abc_text = ''.join(byte_list)
+
+    # try:
+    #     abc_text = time_unreduce(abc_text)
+    # except:
+    #     continue
+
     # set output file name as the current time
     with open(filename, 'w') as file:
-        file.write(''.join(byte_list))
+        file.write(abc_text)
         print("Generated "+filename)

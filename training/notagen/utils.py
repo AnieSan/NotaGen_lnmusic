@@ -31,25 +31,16 @@ class Patchilizer:
                 line_bars = list(filter(None, line_bars))
                 new_line_bars = []
 
-                if line_bars[0] in self.delimiters:
-                    new_line_bars =[line_bars[i] + line_bars[i + 1] for i in range(0, len(line_bars, 2))]
+                if len(line_bars) == 1:
+                    new_line_bars = line_bars
                 else:
-                    new_line_bars = [line_bars[0]] + [line_bars[i] + line_bars[i + 1] for i in range(1, len(line_bars), 2)]
+                    if line_bars[0] in self.delimiters:
+                        new_line_bars =[line_bars[i] + line_bars[i + 1] for i in range(0, len(line_bars, 2))]
+                    else:
+                        new_line_bars = [line_bars[0]] + [line_bars[i] + line_bars[i + 1] for i in range(1, len(line_bars), 2)]
 
-            # skip = False
-            # for i in range(len(line_bars)):
-            #     if skip:
-            #         skip = False
-            #         continue
-            #     if line_bars[i] in self.delimiters:
-            #         new_line_bars.append(line_bars[i] + line_bars[i + 1])
-            #         skip = True
-            #     else:
-            #         new_line_bars.append(line_bars[i])
-
-            # if len(new_line_bars) > 1:
-                new_line_bars[-2] += new_line_bars[-1]  # 吸收最后一个 小节线+\n 的组合
-                new_line_bars = new_line_bars[:-1]
+                    new_line_bars[-2] += new_line_bars[-1]  # 吸收最后一个 小节线+\n 的组合
+                    new_line_bars = new_line_bars[:-1]
                 new_bars += new_line_bars
         except:
             pass
@@ -76,13 +67,11 @@ class Patchilizer:
         """
         Encode music into patches of specified length.
         """
-        lines = abc_code.split('\n')
-        if not generate_mode:
-            lines = list(filter(None, lines))  # remove empty lines
+        lines = abc_code.split('\n')[:-1]
 
         tunebody_index = None
         for i, line in enumerate(lines):
-            if line.startswith('[V:1]') or line.startswith('[r:'):
+            if line.startswith('[V:') or line.startswith('[r:'):
                 tunebody_index = i
                 break
 
@@ -261,9 +250,11 @@ class ByteLevelDecoder(PreTrainedModel):
         # concatenate the encoded patches with the input embeddings
         inputs_embeds = torch.cat((encoded_patches.unsqueeze(1), inputs_embeds[:,1:,:]), dim=1)
 
-        return self.base(inputs_embeds=inputs_embeds, 
+        output = self.base(inputs_embeds=inputs_embeds, 
                          attention_mask=target_masks,
                          labels=target_patches)
+
+        return output
 
     def generate(self,
                  encoded_patch: torch.Tensor,
@@ -394,3 +385,41 @@ class bGPTForClassification(PreTrainedModel):
         encoded_patches = self.patch_level_decoder(patches)["last_hidden_state"]
         encoded_patches = torch.mean(encoded_patches, dim=1)
         return self.classifier(encoded_patches)
+
+
+if __name__ == '__main__':
+    
+    patchilizer = Patchilizer()
+
+    count = 0
+    for file in os.listdir('/22A052/multitrackComposer-data/11_abc_time_reduced/imsleeping_tchai/C'):
+        print(file)
+
+        file_path = os.path.join('/22A052/multitrackComposer-data/11_abc_time_reduced/imsleeping_tchai/C', file)
+        with open(file_path, 'r', encoding='utf-8') as f:
+            abc_text = f.read()
+
+        lines = abc_text.split('\n')[:-1]
+
+        tunebody_index = None
+        for i, line in enumerate(lines):
+            if line.startswith('[V:') or line.startswith('[r:'):
+                tunebody_index = i
+                break
+
+        metadata_lines = lines[:tunebody_index]
+        tunebody_lines = lines[tunebody_index:]
+        
+        metadata_lines = [line + '\n' for line in metadata_lines]
+        tunebody_lines = ['[r:' + str(len(tunebody_lines) - bar_no) + ']' + line + '\n' for bar_no, line in
+                                enumerate(tunebody_lines)]
+
+        # for line in tunebody_lines:
+        #     print(line)
+
+        tunebody_patches = []
+
+        bars = patchilizer.split_bars(tunebody_lines)
+        print(bars)
+
+        break

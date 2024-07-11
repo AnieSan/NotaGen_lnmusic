@@ -54,7 +54,7 @@ elif PATCH_DECODER_STRUCTURE == 'llama':
     patch_config = LlamaConfig(num_hidden_layers=PATCH_NUM_LAYERS,
                                max_length=PATCH_LENGTH, 
                                max_position_embeddings=PATCH_LENGTH,
-                               hidden_size=768,
+                               hidden_size=HIDDEN_SIZE,
                                num_attention_heads=HIDDEN_SIZE//64, 
                                intermediate_size=HIDDEN_SIZE*4,
                                vocab_size=1)
