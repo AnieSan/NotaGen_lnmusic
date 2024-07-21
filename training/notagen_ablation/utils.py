@@ -53,12 +53,12 @@ class Patchilizer:
         """
         bytes = [ord(c) for c in abc_text]
         if len(bytes) % patch_size != 0:
-            bytes = bytes + [self.special_token_id] * (patch_size - len(bytes) % patch_size)
+            bytes = bytes + [self.eos_token_id] + [self.special_token_id] * (patch_size - len(bytes) % patch_size - 1)
         patches = [bytes[i:i + patch_size] for i in range(0, len(bytes), patch_size)]
         return patches
     
     def bar2patch(self, abc_bar, patch_size=PATCH_SIZE):
-        bytes = [ord(c) for c in abc_bar]
+        bytes = [ord(c) for c in abc_bar] + [self.eos_token_id]
         if len(bytes) < patch_size:
             bytes = bytes + [self.special_token_id] * (patch_size - len(bytes))
         else:
