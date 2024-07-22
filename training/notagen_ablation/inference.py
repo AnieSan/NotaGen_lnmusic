@@ -79,17 +79,15 @@ for i in files:
                                          top_k=TOP_K,
                                          top_p=TOP_P,
                                          temperature=TEMPERATURE)
-        if predicted_patch == eos_patch:
+        if predicted_patch[0] == patchilizer.bos_token_id and predicted_patch[1] == patchilizer.eos_token_id:
             end_flag = True
             break
+        next_patch = patchilizer.decode([predicted_patch])
 
-        for byte in predicted_patch:
-            if byte == 0:
-                break
-            char = chr(byte)
+        for char in next_patch:
             byte_list.append(char)
 
-        predicted_patch = torch.tensor([predicted_patch], device=device)    # (1, 16)
+        predicted_patch = torch.tensor(patchilizer.bar2patch(next_patch), device=device)    # (1, 16)
         input_patches = torch.cat([input_patches, predicted_patch], dim=1)  # (1, 16 * patch_len)
 
         if len(byte_list) > 102400:
@@ -103,7 +101,7 @@ for i in files:
 
             tunebody_index = None
             for i, line in enumerate(abc_lines):
-                if line.startswith('[r:'):
+                if line[:2] not in ['%%', 'L:', 'M:', 'K:', 'Q:', 'V:', 'I:']:
                     tunebody_index = i
                     break
             if tunebody_index is None or tunebody_index == len(abc_lines) - 1:

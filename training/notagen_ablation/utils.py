@@ -14,10 +14,8 @@ class Patchilizer:
         self.stream = PATCH_STREAM
         self.delimiters = ["|:", "::", ":|", "[|", "||", "|]", "|"]
         self.regexPattern = '(' + '|'.join(map(re.escape, self.delimiters)) + ')'
-        # self.pad_token_id = 0
         self.bos_token_id = 1
         self.eos_token_id = 2
-        # self.mask_token_id = 3
         self.special_token_id = 0
 
     def split_bars(self, body_lines):
@@ -38,9 +36,9 @@ class Patchilizer:
                         new_line_bars =[line_bars[i] + line_bars[i + 1] for i in range(0, len(line_bars, 2))]
                     else:
                         new_line_bars = [line_bars[0]] + [line_bars[i] + line_bars[i + 1] for i in range(1, len(line_bars), 2)]
-
-                    new_line_bars[-2] += new_line_bars[-1]  # 吸收最后一个 小节线+\n 的组合
-                    new_line_bars = new_line_bars[:-1]
+                    if 'V' not in new_line_bars[-1]:
+                        new_line_bars[-2] += new_line_bars[-1]  # 吸收最后一个 小节线+\n 的组合
+                        new_line_bars = new_line_bars[:-1]
                 new_bars += new_line_bars
         except:
             pass
@@ -62,7 +60,10 @@ class Patchilizer:
         if len(bytes) < patch_size:
             bytes = bytes + [self.special_token_id] * (patch_size - len(bytes))
         else:
-            bytes = bytes[:patch_size]
+            if abc_bar[-1] == '\n':
+                bytes = [ord(c) for c in abc_bar[:patch_size-1]] + [ord('\n')]
+            else:
+                bytes = bytes[:patch_size]
         return [bytes]
 
     def patch2bytes(self, patch):
@@ -320,6 +321,7 @@ class bGPTLMHeadModel(PreTrainedModel):
         super().__init__(encoder_config)
         self.special_token_id = 0
         self.bos_token_id = 1
+        self.eos_token_id = 2
         self.patch_level_decoder = PatchLevelDecoder(encoder_structure, encoder_config)
         self.byte_level_decoder = ByteLevelDecoder(decoder_structure, decoder_config)
 
@@ -372,9 +374,11 @@ class bGPTLMHeadModel(PreTrainedModel):
             prob = top_k_sampling(prob, top_k=top_k, return_probs=True)
             prob = top_p_sampling(prob, top_p=top_p, return_probs=True)
             token = temperature_sampling(prob, temperature=temperature)
+            char = chr(token)
             generated_patch.append(token)
+            print(chr(token), end='')
 
-            if len(tokens) >= PATCH_SIZE:
+            if len(tokens) >= PATCH_SIZE or token == self.eos_token_id:
                 break
             else:
                 tokens = torch.cat((tokens, torch.tensor([token], device=self.device)), dim=0)
