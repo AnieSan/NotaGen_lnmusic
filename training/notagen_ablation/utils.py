@@ -1,7 +1,9 @@
 import torch
 import random
 import bisect
+import json
 import re
+import sentencepiece as spm
 from config import *
 from transformers import GPT2Model, GPT2LMHeadModel, LlamaModel, LlamaForCausalLM, PreTrainedModel
 from samplings import top_p_sampling, top_k_sampling, temperature_sampling
@@ -17,6 +19,7 @@ class Patchilizer:
         self.bos_token_id = 1
         self.eos_token_id = 2
         self.special_token_id = 0
+        self.bpe_tokenizer = spm.SentencePieceProcessor(model_file=BPE_MODEL_DICT[REDUCE_TYPE])
 
     def split_bars(self, body_lines):
         """
@@ -33,7 +36,7 @@ class Patchilizer:
                     new_line_bars = line_bars
                 else:
                     if line_bars[0] in self.delimiters:
-                        new_line_bars =[line_bars[i] + line_bars[i + 1] for i in range(0, len(line_bars, 2))]
+                        new_line_bars = [line_bars[i] + line_bars[i + 1] for i in range(0, len(line_bars), 2)]
                     else:
                         new_line_bars = [line_bars[0]] + [line_bars[i] + line_bars[i + 1] for i in range(1, len(line_bars), 2)]
                     if 'V' not in new_line_bars[-1]:
@@ -45,109 +48,157 @@ class Patchilizer:
 
         return new_bars
 
-    def bytes2patches(self, abc_text, patch_size=PATCH_SIZE):
-        """
-        Convert a sequence of bytes into patches
-        """
-        bytes = [ord(c) for c in abc_text]
-        if len(bytes) % patch_size != 0:
-            bytes = bytes + [self.eos_token_id] + [self.special_token_id] * (patch_size - len(bytes) % patch_size - 1)
-        patches = [bytes[i:i + patch_size] for i in range(0, len(bytes), patch_size)]
+    def split_patches(self, abc_text, patch_size=PATCH_SIZE, generate_last=False):
+        if not generate_last and len(abc_text) % patch_size != 0:
+            abc_text += chr(self.eos_token_id)
+        patches = [abc_text[i : i + patch_size] for i in range(0, len(abc_text), patch_size)]
         return patches
-    
-    def bar2patch(self, abc_bar, patch_size=PATCH_SIZE):
-        bytes = [ord(c) for c in abc_bar] + [self.eos_token_id]
-        if len(bytes) < patch_size:
-            bytes = bytes + [self.special_token_id] * (patch_size - len(bytes))
-        else:
+
+    def bar2patch(self, abc_bar, patch_size=PATCH_SIZE):    
+        # 不区分生成和训练模式，因为最后一个patch一定是完整的小节或太长而被截断的小节
+        if len(abc_bar) > patch_size:
             if abc_bar[-1] == '\n':
-                bytes = [ord(c) for c in abc_bar[:patch_size-1]] + [ord('\n')]
+                patch = abc_bar[ : patch_size - 1] + '\n'
             else:
-                bytes = bytes[:patch_size]
-        return [bytes]
+                patch = abc_bar[ : patch_size]
+        elif len(abc_bar) == patch_size:
+            patch = abc_bar
+        else:   # < patch_size
+            patch = abc_bar + chr(self.eos_token_id)
+        return patch
 
     def patch2bytes(self, patch):
         """
         Convert a patch into a bar.
         """
-        return ''.join(chr(idx) if idx > self.eos_token_id else '' for idx in patch)
-
-    def encode(self, abc_code, patch_length=PATCH_LENGTH, patch_size=PATCH_SIZE, add_special_patches=True, generate_mode=False):
-        """
-        Encode music into patches of specified length.
-        """
-        if PATCH_MODE == 'bpe':
-            tokenizer = Tokenizer.from_file('bpe_model.json')
-            tokenized_text = [self.bos_token_id] + tokenizer.encode(abc_code).ids + [self.eos_token_id]
-            return tokenized_text[:patch_length]
-
-        lines = abc_code.split('\n')
-        lines = list(filter(None, lines))
-
-        tunebody_index = None
-        for i, line in enumerate(lines):
-            if line.startswith('[V:') or line.startswith('[r:'):
-                tunebody_index = i
+        bytes = ''
+        for idx in patch:
+            if idx == self.eos_token_id:
                 break
+            if idx < self.eos_token_id:
+                pass
+            bytes += chr(idx)
+        return bytes
 
-        metadata_lines = lines[:tunebody_index]
-        tunebody_lines = lines[tunebody_index:]
-
-        metadata_lines = [line + '\n' for line in metadata_lines]
-        if self.stream:
-            if not generate_mode:
-                tunebody_lines = ['[r:' + str(bar_no + 1) + '/' + str(len(tunebody_lines) - bar_no) + ']' + line + '\n' for bar_no, line in
-                                  enumerate(tunebody_lines)]
-            else:
-                tunebody_lines = [tunebody_lines[i] + '\n' for i in range(len(tunebody_lines) - 1)] + [tunebody_lines[-1]]
-        else:
-            tunebody_lines = [line + '\n' for line in tunebody_lines]
+    def patchilize_metadata(self, metadata_lines):
 
         if self.mode == 'byte':
-            metadata_patches = self.bytes2patches(''.join(metadata_lines))
+            metadata_patches = self.split_patches(''.join(metadata_lines))
         elif self.mode == 'barbyte' or self.mode == 'linebyte':
             metadata_patches = []
             for line in metadata_lines:
-                metadata_patches += self.bytes2patches(line, patch_size)
+                metadata_patches += self.split_patches(line)
         elif self.mode == 'bar':
             metadata_patches = []
             for line in metadata_lines:
-                metadata_patches += self.bar2patch(line, patch_size)
+                metadata_patches.append(self.bar2patch(line))
+        elif self.mode == 'bpe':
+            metadata_patches = self.bpe_tokenizer.encode_as_pieces(''.join(metadata_lines))
+        
+        return metadata_patches
+    
+    def patchilize_tunebody(self, tunebody_lines, encode_mode='train'):
 
         if self.mode == 'byte':
-            tunebody_patches = self.bytes2patches(''.join(tunebody_lines))
+            if encode_mode == 'train':
+                tunebody_patches = self.split_patches(''.join(tunebody_lines))
+            elif encode_mode == 'generate':
+                tunebody_patches = self.split_patches(''.join(tunebody_lines), generate_last=True)
         elif self.mode == 'barbyte':
             tunebody_patches = []
             bars = self.split_bars(tunebody_lines)
-            for bar in bars:
-                tunebody_patches += self.bytes2patches(bar, patch_size)
+            if encode_mode == 'train':
+                for bar in bars:
+                    tunebody_patches += self.split_patches(bar)
+            elif encode_mode == 'generate':
+                for bar in bars[:-1]:
+                    tunebody_patches += self.split_patches(bar)
+                tunebody_patches += self.split_patches(bars[-1], generate_last=True)
         elif self.mode == 'linebyte':
             tunebody_patches = []
-            for line in tunebody_lines:
-                tunebody_patches += self.bytes2patches(line, patch_size)
+            if encode_mode == 'train':
+                for line in tunebody_lines:
+                    tunebody_patches += self.split_patches(line)
+            elif encode_mode == 'generate':
+                for line in tunebody_lines[:-1]:
+                    tunebody_patches += self.split_patches(line)
+                tunebody_patches += self.split_patches(tunebody_lines[-1], generate_last=True)
         elif self.mode == 'bar':
             tunebody_patches = []
             bars = self.split_bars(tunebody_lines)
             for bar in bars:
-                tunebody_patches += self.bar2patch(bar, patch_size)
+                tunebody_patches.append(self.bar2patch(bar))
+        elif self.mode == 'bpe':
+            tunebody_patches = self.bpe_tokenizer.encode_as_pieces(''.join(tunebody_lines))
+
+        return tunebody_patches
+
+    def encode_train(self, abc_data_dict, patch_length=PATCH_LENGTH, patch_size=PATCH_SIZE, add_special_patches=True):
+
+        abc_text = abc_data_dict[REDUCE_TYPE]
+        if REDUCE_TYPE == 'time':
+            unreduced_abc_text = abc_data_dict['none'] 
+        elif REDUCE_TYPE == 'time-voice':
+            unreduced_abc_text = abc_data_dict['voice']
+
+        lines = abc_text.split('\n')
+        lines = list(filter(None, lines))
+        lines = [line + '\n' for line in lines]
+
+        if REDUCE_TYPE in ['time', 'time-voice']:
+            unreduced_lines = unreduced_abc_text.split('\n')
+            unreduced_lines = list(filter(None, unreduced_lines))
+            unreduced_lines = [line + '\n' for line in unreduced_lines]
+
+        tunebody_index = -1
+        for i, line in enumerate(lines):
+            if line.startswith('[V:'):
+                tunebody_index = i
+                break
+
+        metadata_lines = lines[ : tunebody_index]
+        tunebody_lines = lines[tunebody_index : ]
+
+        if self.stream:
+            tunebody_lines = ['[r:' + str(line_index) + '/' + str(len(tunebody_lines) - line_index - 1) + ']' + line for line_index, line in
+                                enumerate(tunebody_lines)]    # 加[r:n/n]
+
+        metadata_patches = self.patchilize_metadata(metadata_lines)
+        tunebody_patches = self.patchilize_tunebody(tunebody_lines, encode_mode='train')
 
         if add_special_patches:
-            bos_patch = [self.bos_token_id] * (patch_size - 1) + [self.eos_token_id]
-            eos_patch = [self.bos_token_id] + [self.eos_token_id] * (patch_size - 1)
+            if self.mode in ['bar', 'barbyte', 'linebyte', 'byte']:
+                bos_patch = chr(self.bos_token_id) * (patch_size - 1) + chr(self.eos_token_id)
+                eos_patch = chr(self.bos_token_id) + chr(self.eos_token_id) * (patch_size - 1)
+            elif self.mode == 'bpe':
+                bos_patch = self.bpe_tokenizer.id_to_piece(self.bos_token_id)
+                eos_patch = self.bpe_tokenizer.id_to_piece(self.eos_token_id)
             metadata_patches = [bos_patch] + metadata_patches
-            if not generate_mode:
-                tunebody_patches = tunebody_patches + [eos_patch]
+            tunebody_patches = tunebody_patches + [eos_patch]
 
         if self.stream:
             if len(metadata_patches) + len(tunebody_patches) > patch_length:
                 if self.mode in ['bar', 'barbyte', 'linebyte']:
-                    available_cut_indexes = [0] + [index + 1 for index, patch in enumerate(tunebody_patches) if
-                                                    self.patch2bytes(patch).endswith('\n')]
+                    available_cut_indexes = [0] + [index + 1 for index, patch in enumerate(tunebody_patches) if '\n' in patch]
+                    line_index_for_cut_index = list(range(len(available_cut_indexes)))  # 每个cut_index对应tunebody的哪一行
                 elif self.mode == 'byte':
-                    available_cut_indexes = [0] + [index for index, patch in enumerate(tunebody_patches) if 
-                                                    '\n' in self.patch2bytes(patch)]
+                    available_cut_indexes = [0] + [index for index, patch in enumerate(tunebody_patches) if '\n' in patch]
+                    line_index_for_cut_index = [0]
+                    cur_line_index = 0
+                    total_line_count = 0
+                    for cut_index in available_cut_indexes[1:]:
+                        cur_line_index = total_line_count + 1
+                        n_count = tunebody_patches[cut_index].count('\n')
+                        total_line_count += tunebody_patches[cut_index].count('\n')
+                        line_index_for_cut_index.append(cur_line_index)
+                elif self.mode == 'bpe':
+                    available_cut_indexes = [0] + [index + 1 for index, patch in enumerate(tunebody_patches) if patch == '\n']
+                    line_index_for_cut_index = list(range(len(available_cut_indexes)))
+
                 end_index = len(metadata_patches) + len(tunebody_patches) - patch_length
                 biggest_index = bisect.bisect_left(available_cut_indexes, end_index) # biggest index 在 end_index 右面一位
+                if REDUCE_TYPE in ['time', 'time-voice']:   # 出于保险，biggest_index再往右移2位（依旧不一定能保证从biggest_index切，能够容纳乐曲所有的结束部分）
+                    biggest_index = min(biggest_index + 2, len(available_cut_indexes) - 1)
                 available_cut_indexes = available_cut_indexes[:biggest_index + 1]
 
                 if len(available_cut_indexes) == 1:
@@ -159,17 +210,96 @@ class Patchilizer:
                 choice = random.choice(choices)
                 if choice == 'head':
                     patches = metadata_patches + tunebody_patches[0:]
-                elif choice == 'tail':
-                    patches = metadata_patches + tunebody_patches[available_cut_indexes[-1]:]
                 else:
-                    cut_index = random.choice(available_cut_indexes[1:-1])
-                    patches = metadata_patches + tunebody_patches[cut_index:]
+                    if choice == 'tail':
+                        cut_index = len(available_cut_indexes) - 1
+                    else:
+                        cut_index = random.choice(range(1, len(available_cut_indexes) - 1))
+
+                    line_index = line_index_for_cut_index[cut_index] 
+
+                    if REDUCE_TYPE in ['time', 'time-voice']:
+                        unreduced_line_0 = '[r:' + str(line_index) + '/' + str(len(tunebody_lines) - line_index  - 1) + ']' + unreduced_lines[tunebody_index + line_index]
+                        stream_tunebody_lines = [unreduced_line_0] + tunebody_lines[line_index + 1 :]
+                    else:
+                        stream_tunebody_lines = tunebody_lines[line_index : ]
+                    
+                    stream_tunebody_patches = self.patchilize_tunebody(stream_tunebody_lines, encode_mode='train')
+                    if add_special_patches:
+                        stream_tunebody_patches = stream_tunebody_patches + [eos_patch]
+                    patches = metadata_patches + stream_tunebody_patches
             else:
                 patches = metadata_patches + tunebody_patches
         else:
             patches = metadata_patches + tunebody_patches
+        
+        patches = patches[ : patch_length]
 
-        return patches[:patch_length]
+        # encode to ids
+        id_patches = []
+        if self.mode in ['bar', 'barbyte', 'linebyte', 'byte']:
+            for patch in patches:
+                id_patch = [ord(c) for c in patch] + [self.special_token_id] * (patch_size - len(patch))
+                id_patches.append(id_patch)
+        elif self.mode == 'bpe':
+            for patch in patches:
+                id_patch = self.bpe_tokenizer.piece_to_id(patch)
+                id_patches.append(id_patch)
+
+        return id_patches
+
+    def encode_generate(self, abc_code, patch_length=PATCH_LENGTH, patch_size=PATCH_SIZE, add_special_patches=True):
+
+        lines = abc_code.split('\n')
+        lines = list(filter(None, lines))
+    
+        tunebody_index = None
+        for i, line in enumerate(lines):
+            if line.startswith('[V:') or line.startswith('[r:'):
+                tunebody_index = i
+                break
+    
+        metadata_lines = lines[ : tunebody_index]
+        tunebody_lines = lines[tunebody_index : ]   # 备份未省略前的tunebody_lines
+    
+        metadata_lines = [line + '\n' for line in metadata_lines]
+        if self.stream:
+            if not abc_code.endswith('\n'): # 如果生成结果最后一行未完结
+                tunebody_lines = [tunebody_lines[i] + '\n' for i in range(len(tunebody_lines) - 1)] + [tunebody_lines[-1]]
+            else:
+                tunebody_lines = [tunebody_lines[i] + '\n' for i in range(len(tunebody_lines))]
+        else:
+            tunebody_lines = [line + '\n' for line in tunebody_lines]
+    
+        metadata_patches = self.patchilize_metadata(metadata_lines)
+        tunebody_patches = self.patchilize_tunebody(tunebody_lines, encode_mode='generate')
+    
+        if add_special_patches:
+            if self.mode in ['bar', 'barbyte', 'linebyte', 'byte']:
+                bos_patch = chr(self.bos_token_id) * (patch_size - 1) + chr(self.eos_token_id)
+            elif self.mode == 'bpe':
+                bos_patch = self.bpe_tokenizer.id_to_piece(self.bos_token_id)
+            metadata_patches = [bos_patch] + metadata_patches
+    
+        patches = metadata_patches + tunebody_patches
+        patches = patches[ : patch_length]
+
+        # encode to ids
+        id_patches = []
+        if self.mode in ['bar', 'barbyte', 'linebyte', 'byte']:
+            for patch in patches:
+                if len(patch) < PATCH_SIZE and patch[-1] != chr(self.eos_token_id):
+                    id_patch = [ord(c) for c in patch]
+                else:
+                    id_patch = [ord(c) for c in patch] + [self.special_token_id] * (patch_size - len(patch))
+                id_patches.append(id_patch)
+        elif self.mode == 'bpe':
+            for patch in patches:
+                id_patch = self.bpe_tokenizer.piece_to_id(patch)
+                id_patches.append(id_patch)
+        
+        return id_patches
+
 
     def decode(self, patches):
         """
@@ -376,9 +506,8 @@ class bGPTLMHeadModel(PreTrainedModel):
             token = temperature_sampling(prob, temperature=temperature)
             char = chr(token)
             generated_patch.append(token)
-            print(chr(token), end='')
 
-            if len(tokens) >= PATCH_SIZE or token == self.eos_token_id:
+            if len(tokens) >= PATCH_SIZE:# or token == self.eos_token_id:
                 break
             else:
                 tokens = torch.cat((tokens, torch.tensor([token], device=self.device)), dim=0)
@@ -391,6 +520,7 @@ class bpeLMHeadModel(PreTrainedModel):
         super().__init__(config)
         self.special_token_id = 0
         self.bos_token_id = 1
+        self.eos_token_id = 2
 
         if structure == 'gpt2':
             self.base = GPT2LMHeadModel(config)
@@ -400,8 +530,9 @@ class bpeLMHeadModel(PreTrainedModel):
     def forward(self,
                 input_ids: torch.Tensor,
                 masks: torch.Tensor):
-        
-        labels = input_ids.clone().masked_fill_(masks, -100)       
+
+        target_masks = input_ids == self.special_token_id
+        labels = input_ids.clone().masked_fill_(target_masks, -100)
         outputs = self.base(input_ids, attention_mask=masks, labels=labels)
         
         return outputs
@@ -420,17 +551,18 @@ class bpeLMHeadModel(PreTrainedModel):
         :return: the generated patches
         """
         
-        generated_ids = input_ids            
+        generated_ids = []          
 
         while True:
-            outputs = self.base(generated_ids)
+            outputs = self.base(input_ids)
             prob = torch.nn.functional.softmax(outputs.logits.squeeze(0)[-1], dim=-1).cpu().detach().numpy()
             prob = top_k_sampling(prob, top_k=top_k, return_probs=True)
             prob = top_p_sampling(prob, top_p=top_p, return_probs=True)
             token = temperature_sampling(prob, temperature=temperature)
-            generated_ids = torch.cat((generated_ids, torch.tensor([token], device=self.device)), dim=0)
+            input_ids = torch.cat((input_ids, torch.tensor([token], device=self.device).unsqueeze(0)), dim=-1)
+            generated_ids.append(int(token))
 
-            if len(generated_ids) >= PATCH_SIZE:
+            if len(input_ids[0]) >= PATCH_LENGTH or token == self.eos_token_id:
                 break
 
         return generated_ids

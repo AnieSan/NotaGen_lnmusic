@@ -5,8 +5,6 @@ import wandb
 import torch
 import random
 import numpy as np
-# from abctoolkit.abc_transposition import transpose_to_abc_lines
-# from abctoolkit.rotate import rotate_abc
 from utils import *
 from config import *
 from tqdm import tqdm
@@ -135,27 +133,41 @@ class ByteDataset(Dataset):
         return len(self.filenames)
 
     def __getitem__(self, idx):
-        
-        filename = self.filenames[idx]
-        filename = random.choice(filename)
-        if KEY_AUGMENT:
+        try:
+            filename = self.filenames[idx]
+            filename = random.choice(filename)
+
             key = random.choice(['C#', 'F#', 'B', 'E', 'A', 'D', 'G', 'C', 'F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb', 'Cb'])
             dataset = os.path.split(filename)[0]
             name = os.path.splitext(os.path.split(filename)[-1])[0]
-            filepath = os.path.join(DATA_FOLDER, dataset, key, name + '_' + key + '.abc')
-        else:
-            filepath = os.path.join(DATA_FOLDER, filename)
+            filepath_dict = {
+                'none': os.path.join(DATA_FOLDER_DICT['none'], dataset, key, name + '_' + key + '.abc'),
+                'time': os.path.join(DATA_FOLDER_DICT['time'], dataset, key, name + '_' + key + '.abc'),
+                'voice': os.path.join(DATA_FOLDER_DICT['voice'], dataset, key, name + '_' + key + '.abc'),
+                'time-voice': os.path.join(DATA_FOLDER_DICT['time-voice'], dataset, key, name + '_' + key + '.abc'),
+            }
 
-        with open(filepath, 'r', encoding='utf-8') as f:
-            abc_text = f.read()
+            abc_data_dict = {}
+            with open(filepath_dict[REDUCE_TYPE], 'r', encoding='utf-8') as f:
+                abc_data_dict[REDUCE_TYPE] = f.read()
+            if REDUCE_TYPE == 'time':
+                with open(filepath_dict['none'], 'r', encoding='utf-8') as f:
+                    abc_data_dict['none'] = f.read()
+            elif REDUCE_TYPE == 'time-voice':
+                with open(filepath_dict['voice'], 'r', encoding='utf-8') as f:
+                    abc_data_dict['voice'] = f.read()
+            
+            file_bytes = patchilizer.encode_train(abc_data_dict)
+            file_masks = [1] * len(file_bytes)
 
-        file_bytes = patchilizer.encode(abc_text)
-        file_masks = [1] * len(file_bytes)
+            file_bytes = torch.tensor(file_bytes, dtype=torch.long)
+            file_masks = torch.tensor(file_masks, dtype=torch.long)
+            
+            return file_bytes, file_masks
+        except Exception as e:
+            print(filepath_dict[REDUCE_TYPE], e)
+            return self.__getitem__((idx+1) % len(self.filenames))
 
-        file_bytes = torch.tensor(file_bytes, dtype=torch.long)
-        file_masks = torch.tensor(file_masks, dtype=torch.long)
-        
-        return file_bytes, file_masks
 
 # call model with a batch of input
 def process_one_batch(batch):
@@ -228,10 +240,6 @@ if __name__ == "__main__":
         wandb.login(key='de0a8f1601fe2960599d99554cbf0a2778d15604')
         wandb.init(project="notagen_ablation",
                    name=WANDB_NAME)
-        
-    # # load filenames under train and eval folder
-    # train_files = list_files_in_directory(TRAIN_FOLDERS)
-    # eval_files = list_files_in_directory(EVAL_FOLDERS)
     
     # load data
     with open(DATA_TRAIN_INDEX_PATH, "r", encoding="utf-8") as f:
