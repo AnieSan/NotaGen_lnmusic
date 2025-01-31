@@ -36,12 +36,19 @@ pip install -r requirements.txt
   V:2
   [G,B,D]4 A,2 | B,6 |]
   ```
-- Change the ```ORI_FOLDER```, ```DES_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```, then run this script:
+- Change the ```ORI_FOLDER```, ```INTERLEAVED_FOLDER```, ```AUGMENTED_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```:
+  
+  ```python
+  ORI_FOLDER = ''  # Folder containing standard ABC notation files
+  INTERLEAVED_FOLDER = ''   # Output interleaved ABC notation files that are compatible with CLaMP 2 to this folder
+  AUGMENTED_FOLDER = ''   # On the basis of interleaved ABC, output key-augmented and rest-omitted files that are compatible with NotaGen to this folder
+  EVAL_SPLIT = 0.1    # The ratio of eval data 
+  ```
+  then run this script:
   ```
   python 2_data_preprocess.py
   ```
-  This script will make 15 key signature folders under the ```DES_FOLDER```, and output interleaved ABC notation files with rest bars omitted.
-  The interleaved ABC notation is like this:
+  The script will convert the standard ABC to interleaved ABC, which is like below. The files will be under ```INTERLEAVED_FOLDER```.
   ```plain
   %%score { 1 | 2 }
   L:1/8
@@ -53,7 +60,10 @@ pip install -r requirements.txt
   [V:1]!mf!"^Allegro" d2 (GA Bc|[V:2][G,B,D]4 A,2|
   [V:1]d2) .G2 .G2|][V:2]B,6|]
   ```
-  This script will also generate data index files for training. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```DES_FOLDER_train.jsonl``` and ```DES_FOLDER_eval.jsonl```.
+  This script will make 15 key signature folders under the ```AUGMENTED_FOLDER```, and output interleaved ABC notation files with rest bars omitted.
+  This script will also generate data index files for training. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```AUGMENTED_FOLDER_train.jsonl``` and ```AUGMENTED_FOLDER_eval.jsonl```.
+
+
 
 
 ## Pretrain
