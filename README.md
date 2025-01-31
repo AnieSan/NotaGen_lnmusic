@@ -53,6 +53,8 @@ pip install -r requirements.txt
   [V:1]!mf!"^Allegro" d2 (GA Bc|[V:2][G,B,D]4 A,2|
   [V:1]d2) .G2 .G2|][V:2]B,6|]
   ```
+  This script will also generate data index files for training. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```DES_FOLDER_train.jsonl``` and ```DES_FOLDER_eval.jsonl```.
+
 
 ## Pretrain
 
