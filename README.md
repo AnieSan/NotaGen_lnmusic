@@ -8,3 +8,11 @@ pip install accelerate
 pip install optimum
 pip install -r requirements.txt
 ```
+
+## Data Preprocessing
+
+## Pretrain
+
+```
+accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
+```
