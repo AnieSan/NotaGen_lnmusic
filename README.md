@@ -16,3 +16,11 @@ pip install -r requirements.txt
 ```
 accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ```
+
+## Finetune
+
+## Reinforcement Learning (CLaMP-DPO)
+### CLaMP 2 Setup
+```
+git clone https://github.com/sanderwood/clamp2.git
+```
