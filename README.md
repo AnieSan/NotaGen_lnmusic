@@ -21,6 +21,9 @@ accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 
 ## Reinforcement Learning (CLaMP-DPO)
 ### CLaMP 2 Setup
-```
-git clone https://github.com/sanderwood/clamp2.git
-```
+
+Download model weights:
+- [CLaMP 2 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_clamp2_h_size_768_lr_5e-05_batch_128_scale_1_t_length_128_t_model_FacebookAI_xlm-roberta-base_t_dropout_True_m3_True.pth)
+- [M3 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_m3_p_size_64_p_length_512_t_layers_3_p_layers_12_h_size_768_lr_0.0001_batch_16_mask_0.45.pth)
+
+Put the models under the ```clamp2/```folder.
