@@ -1,3 +1,7 @@
+## Links
+- [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
+- [CLaMP 2 Code](https://github.com/sanderwood/clamp2)
+
 ## Environment Setup
 
 ```python
@@ -10,6 +14,45 @@ pip install -r requirements.txt
 ```
 
 ## Data Preprocessing
+
+### Convert from MusicXML
+
+- Go to the data folder ```cd data/```
+- Change the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```1_batch_xml2abc.py```, then run this script:
+  ```
+  python 1_batch_xml2abc.py
+  ```
+  This will conver the MusicXML files into standard ABC notation files, like this:
+  ```plain
+  %%score { 1 | 2 }
+  L:1/8
+  Q:1/4=120
+  M:3/4
+  K:G
+  V:1 treble nm="Piano" snm="Pno."
+  V:2 bass
+  V:1
+  !mf!"^Allegro" d2 (GA Bc | d2) .G2 .G2 |]
+  V:2
+  [G,B,D]4 A,2 | B,6 |]
+  ```
+- Change the ```ORI_FOLDER```, ```DES_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```, then run this script:
+  ```
+  python 2_data_preprocess.py
+  ```
+  This script will make 15 key signature folders under the ```DES_FOLDER```, and output interleaved ABC notation files with rest bars omitted.
+  The interleaved ABC notation is like this:
+  ```plain
+  %%score { 1 | 2 }
+  L:1/8
+  Q:1/4=120
+  M:3/4
+  K:G
+  V:1 treble nm="Piano" snm="Pno."
+  V:2 bass
+  [V:1]!mf!"^Allegro" d2 (GA Bc|[V:2][G,B,D]4 A,2|
+  [V:1]d2) .G2 .G2|][V:2]B,6|]
+  ```
 
 ## Pretrain
 
