@@ -22,20 +22,7 @@ pip install -r requirements.txt
   ```
   python 1_batch_xml2abc.py
   ```
-  This will conver the MusicXML files into standard ABC notation files, like this:
-  ```plain
-  %%score { 1 | 2 }
-  L:1/8
-  Q:1/4=120
-  M:3/4
-  K:G
-  V:1 treble nm="Piano" snm="Pno."
-  V:2 bass
-  V:1
-  !mf!"^Allegro" d2 (GA Bc | d2) .G2 .G2 |]
-  V:2
-  [G,B,D]4 A,2 | B,6 |]
-  ```
+  This will conver the MusicXML files into standard ABC notation files.
 - Change the ```ORI_FOLDER```, ```INTERLEAVED_FOLDER```, ```AUGMENTED_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```:
   
   ```python
@@ -48,20 +35,11 @@ pip install -r requirements.txt
   ```
   python 2_data_preprocess.py
   ```
-  The script will convert the standard ABC to interleaved ABC, which is like below. The files will be under ```INTERLEAVED_FOLDER```.
-  ```plain
-  %%score { 1 | 2 }
-  L:1/8
-  Q:1/4=120
-  M:3/4
-  K:G
-  V:1 treble nm="Piano" snm="Pno."
-  V:2 bass
-  [V:1]!mf!"^Allegro" d2 (GA Bc|[V:2][G,B,D]4 A,2|
-  [V:1]d2) .G2 .G2|][V:2]B,6|]
-  ```
-  This script will make 15 key signature folders under the ```AUGMENTED_FOLDER```, and output interleaved ABC notation files with rest bars omitted.
-  This script will also generate data index files for training. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```AUGMENTED_FOLDER_train.jsonl``` and ```AUGMENTED_FOLDER_eval.jsonl```.
+  - The script will convert the standard ABC to interleaved ABC, which is compatible with CLaMP 2. The files will be under ```INTERLEAVED_FOLDER```.
+
+  - This script will make 15 key signature folders under the ```AUGMENTED_FOLDER```, and output interleaved ABC notation files with rest bars omitted. This is the data representation that NotaGen adopts.
+  
+  - This script will also generate data index files for training NotaGen. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```{AUGMENTED_FOLDER}_train.jsonl``` and ```{AUGMENTED_FOLDER}_eval.jsonl```.
 
 
 
