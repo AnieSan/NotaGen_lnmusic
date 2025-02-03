@@ -45,7 +45,7 @@ pip install -r requirements.txt
 
 To illustrate the specific data format, we provide a subset of the [OpenScore Lieder](https://github.com/OpenScore/Lieder) data, which includes interleaved ABC folders, augmented ABC folders, as well as data index files for training and evaluation. You can download it here and unzip it under ```data/```.
 
-In the instructions of Fine-tuning and Reinforcement Learning below, we will use this dataset to as an example of our implementation. It won't include the "period-composer-instrumentation" conditioning, just for showing how to adapt the pretrained NotaGen to a specific music style.
+In the instructions of Fine-tuning and Reinforcement Learning below, we will use this dataset as an example of our implementation. It won't include the "period-composer-instrumentation" conditioning, just for showing how to adapt the pretrained NotaGen to a specific music style.
 
 
 ## Pretrain
@@ -55,6 +55,26 @@ accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ```
 
 ## Finetune
+- In ```finetune/config.py```:
+  - Change the ```DATA_TRAIN_INDEX_PATH``` and ```DATA_EVAL_INDEX_PATH```:
+  ```python
+  # Configuration for the data
+  DATA_TRAIN_INDEX_PATH = "../data/openscorelieder_augmented_train.jsonl" 
+  DATA_EVAL_INDEX_PATH  = "../data/openscorelieder_augmented_train.jsonl"
+  ```
+  - Change the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
+  ```python
+  PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"
+  ```
+  - ```EXP_TAG``` is for differentiating the models. It will be integrated into the ckpt's name. We can set it to ```openscorelieder```.
+  - You can also modify other parameters like the learning rate.
+- Use this command for fine-tuning
+  ```
+  cd finetune/
+  python train-gen.py
+  ```
+
+
 
 ## Reinforcement Learning (CLaMP-DPO)
 ### CLaMP 2 Setup
