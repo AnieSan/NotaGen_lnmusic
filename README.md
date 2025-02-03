@@ -41,7 +41,11 @@ pip install -r requirements.txt
   
   - This script will also generate data index files for training NotaGen. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```{AUGMENTED_FOLDER}_train.jsonl``` and ```{AUGMENTED_FOLDER}_eval.jsonl```.
 
+### Data Examples
 
+To illustrate the specific data format, we provide a subset of the [OpenScore Lieder](https://github.com/OpenScore/Lieder) data, which includes interleaved ABC folders, augmented ABC folders, as well as data index files for training and evaluation. You can download it here and unzip it under ```data/```.
+
+In the instructions of Fine-tuning and Reinforcement Learning below, we will use this dataset to as an example of our implementation. It won't include the "period-composer-instrumentation" conditioning, just for showing how to adapt the pretrained NotaGen to a specific music style.
 
 
 ## Pretrain
