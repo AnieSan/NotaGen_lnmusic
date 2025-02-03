@@ -94,3 +94,22 @@ Extract the features:
 cd clamp2/
 python extract_clamp2.py
 ```
+
+### CLaMP-DPO
+
+Here we give an example of an iteration of CLaMP-DPO from the initial fine-tuned model.
+
+#### Inference
+- Change the ```INFERENCE_WEIGHTS_PATH``` to path of the fine-tuned weights and ```NUM_SAMPLES``` to generate in ```inference/config.py```:
+  ```python
+    INFERENCE_WEIGHTS_PATH = '../finetune/weights_notagen_openscorelider_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1.pth'              
+    NUM_SAMPLES = 1000                                               
+  ```
+- Inference:
+  ```
+  cd inference/
+  python inference.py
+  ```
+  This will generate an ```output/```folder with two subfolders: ```original``` and ```interleaved```. The ```original/``` subdirectory stores the raw inference outputs from the model, while the ```interleaved/``` subdirectory contains data post-processed with rest measure completion, compatible with CLaMP 2. Each of these subdirectories will contain a model-specific folder, named as a combination of the model's name and its sampling parameters.
+  
+   
