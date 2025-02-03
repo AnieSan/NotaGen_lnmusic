@@ -79,8 +79,18 @@ accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ## Reinforcement Learning (CLaMP-DPO)
 ### CLaMP 2 Setup
 
-Download model weights:
+Download model weights and put them under the ```clamp2/```folder:
 - [CLaMP 2 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_clamp2_h_size_768_lr_5e-05_batch_128_scale_1_t_length_128_t_model_FacebookAI_xlm-roberta-base_t_dropout_True_m3_True.pth)
 - [M3 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_m3_p_size_64_p_length_512_t_layers_3_p_layers_12_h_size_768_lr_0.0001_batch_16_mask_0.45.pth)
 
-Put the models under the ```clamp2/```folder.
+### Extract Ground Truth Features
+Change ```input_dir``` and ```output_dir``` in ```clamp2/extract_clamp2.py```:
+```python
+input_dir = '../data/openscorelieder_interleaved'  # interleaved abc folder
+output_dir = 'feature/openscorelieder_interleaved'  # feature folder
+```
+Extract the features:
+```
+cd clamp2/
+python extract_clamp2.py
+```
