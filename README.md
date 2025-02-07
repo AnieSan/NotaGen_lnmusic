@@ -18,12 +18,12 @@ pip install -r requirements.txt
 ### Convert from MusicXML
 
 - Go to the data folder ```cd data/```
-- Change the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```1_batch_xml2abc.py```, then run this script:
+- Modify the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```1_batch_xml2abc.py```, then run this script:
   ```
   python 1_batch_xml2abc.py
   ```
   This will conver the MusicXML files into standard ABC notation files.
-- Change the ```ORI_FOLDER```, ```INTERLEAVED_FOLDER```, ```AUGMENTED_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```:
+- Modify the ```ORI_FOLDER```, ```INTERLEAVED_FOLDER```, ```AUGMENTED_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```:
   
   ```python
   ORI_FOLDER = ''  # Folder containing standard ABC notation files
@@ -75,7 +75,7 @@ Here we give an example on fine-tuning with the Schubert's lieder data mentioned
   DATA_TRAIN_INDEX_PATH = "../data/schubert_augmented_train.jsonl" 
   DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_train.jsonl"
   ```
-  - Change the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
+  - Modify the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
   ```python
   PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
   ```
@@ -95,7 +95,7 @@ Download model weights and put them under the ```clamp2/```folder:
 - [M3 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_m3_p_size_64_p_length_512_t_layers_3_p_layers_12_h_size_768_lr_0.0001_batch_16_mask_0.45.pth)
 
 ### Extract Ground Truth Features
-Change ```input_dir``` and ```output_dir``` in ```clamp2/extract_clamp2.py```:
+Modify ```input_dir``` and ```output_dir``` in ```clamp2/extract_clamp2.py```:
 ```python
 input_dir = '../data/schubert_interleaved'  # interleaved abc folder
 output_dir = 'feature/schubert_interleaved'  # feature folder
@@ -111,7 +111,7 @@ python extract_clamp2.py
 Here we give an example of an iteration of CLaMP-DPO from the initial model fine-tuned on Schubert's lieder data.
 
 #### 1. Inference
-- Change the ```INFERENCE_WEIGHTS_PATH``` to path of the fine-tuned weights and ```NUM_SAMPLES``` to generate in ```inference/config.py```:
+- Modify the ```INFERENCE_WEIGHTS_PATH``` to path of the fine-tuned weights and ```NUM_SAMPLES``` to generate in ```inference/config.py```:
   ```python
     INFERENCE_WEIGHTS_PATH = '../finetune/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1.pth'              
     NUM_SAMPLES = 1000                                               
@@ -125,7 +125,7 @@ Here we give an example of an iteration of CLaMP-DPO from the initial model fine
 
 #### 2. Extract Generated Data Features
 
-Change ```input_dir``` and ```output_dir``` in ```clamp2/extract_clamp2.py```:
+Modify ```input_dir``` and ```output_dir``` in ```clamp2/extract_clamp2.py```:
 ```python
 input_dir = '../output/interleaved/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1_k_9_p_0.9_temp_1.2'  # interleaved abc folder
 output_dir = 'feature/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1_k_9_p_0.9_temp_1.2'  # feature folder
@@ -155,12 +155,46 @@ gt_feature_folder = '../clamp2/feature/schubert_interleaved'
 output_feature_folder = '../clamp2/feature/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1_k_9_p_0.9_temp_1.2'
 output_original_abc_folder = '../output/original/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1_k_9_p_0.9_temp_1.2'
 output_interleaved_abc_folder = '../output/interleaved/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1_k_9_p_0.9_temp_1.2'
-data_index_path = 'schubert_RL1.json'  
+data_index_path = 'schubert_RL1.json'  # Data for the first iteration of RL
 data_select_portion = 0.1              
 ```
 In this script, the CLaMP 2 Score of every generated data will be calculated and sorted. The top $data_select_portion * 100\%$ and the bottom $data_select_portion * 100\%$ of data will be selected as the chosen and rejected set. There are also three rules to exclude problematic sheets from the chosen set: 1. Sheets with duration alignment problems will be excluded; 2. Sheets that may plagarized from ground truth data (similarity>0.95) are excluded; 3. Sheets where staves for the same instrument are not grouped together are excluded.
 
-The prefence data file will be names as ```data_index_path```.
+The prefence data file will be names as ```data_index_path```, which records the file paths in chosen and rejected sets.
+
+Run this script:
+```
+cd RL/
+python data.py
+```
+
+#### 5. DPO Training
+
+Modify the parameters in ```RL/config.py```:
+```python
+DATA_INDEX_PATH = 'schubert_RL1.json'  # Preference data path
+PRETRAINED_PATH = '../finetune/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1.pth'  # The model to go through DPO optimization
+EXP_TAG = 'schubert-RL1'              # Model tag for differentiation
+```
+You can also modify other parameters like ```OPTIMATION_STEPS``` and DPO hyper-parameters.
+
+Run this script:
+```
+cd RL/
+python train.py
+```
+After training, a model named ```weights_notagen_schubert-RL1_beta_0.1_lambda_10_p_size_16_p_length_1024_p_layers_20_h_size_1280_lr_1e-06.pth``` will be saved under ```RL/```. For the second round of CLaMP-DPO, please go back to the first inference stage, and let the new model to generate pieces.
+
+For Schubert's lieder data, we post our Average CLaMP 2 Score here for the fine-tuned model and models after each iteration of CLaMP-DPO:
+
+|  CLaMP-DPO Iteration (K) |  Average CLaMP 2 Score  | 
+|  ----           |  ----  | 
+|  0 (fine-tuned) | 0.324  |  
+|  1              | 0.579  |
+|  2              | 0.778  |
+|  3              |  ?     |
+
+If you are interested in this method, please have a try on your own style-specific dataset.
 
 
 
