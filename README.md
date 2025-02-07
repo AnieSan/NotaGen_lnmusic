@@ -48,13 +48,23 @@ To illustrate the specific data format, we provide a subset of the [OpenScore Li
 In the instructions of Fine-tuning and Reinforcement Learning below, we will use this dataset as an example of our implementation. It won't include the "period-composer-instrumentation" conditioning, just for showing how to adapt the pretrained NotaGen to a specific music style.
 
 
-## Pretrain
+## Pre-train
+If you want to use your data to pre-train a blank NotaGen model, please preprocess the data and generate the data index files following the instructions above. Then modify the parameters in ```pretrain/config.py```.
 
+Use this command for pre-training:
 ```
+cd pretrain/
 accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ```
+We also provide pre-trained ckpts of different scales:
+|  Models         |  Parameters  |
+|  ----           |  ----        |
+|  NotaGen-Small  | 110M         |
+|  NotaGen-Medium | 244M         |
+|  NotaGen-Large  | 516M         |
 
-## Finetune
+
+## Fine-tune
 - In ```finetune/config.py```:
   - Change the ```DATA_TRAIN_INDEX_PATH``` and ```DATA_EVAL_INDEX_PATH```:
   ```python
