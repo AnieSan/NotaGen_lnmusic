@@ -57,14 +57,17 @@ cd pretrain/
 accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ```
 We also provide pre-trained ckpts of different scales:
-|  Models         |  Parameters  |
-|  ----           |  ----        |
-|  NotaGen-Small  | 110M         |
-|  NotaGen-Medium | 244M         |
-|  NotaGen-Large  | 516M         |
+|  Models         |  Parameters  |  Patch-level Decoder Layers  |  Character-level Decoder Layers  |  Hidden Size  |  Patch Length (Context Length)  |
+|  ----           |  ----  |  ---- |  ----  |  ----  |  ----  |
+|  NotaGen-small  | 110M   |  12   |  3     |  768   |  2048  |
+|  NotaGen-medium | 244M   |  16   |  3     |  1024  |  2048  |
+|  NotaGen-large  | 516M   |  20   |  6     |  1280  |  1024  |
 
 
 ## Fine-tune
+
+Here we give an example on fine-tuning with the Schubert's lieders data mentioned above:
+
 - In ```finetune/config.py```:
   - Change the ```DATA_TRAIN_INDEX_PATH``` and ```DATA_EVAL_INDEX_PATH```:
   ```python
@@ -74,7 +77,7 @@ We also provide pre-trained ckpts of different scales:
   ```
   - Change the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
   ```python
-  PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"
+  PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
   ```
   - ```EXP_TAG``` is for differentiating the models. It will be integrated into the ckpt's name. We can set it to ```openscorelieder```.
   - You can also modify other parameters like the learning rate.
@@ -83,8 +86,6 @@ We also provide pre-trained ckpts of different scales:
   cd finetune/
   python train-gen.py
   ```
-
-
 
 ## Reinforcement Learning (CLaMP-DPO)
 ### CLaMP 2 Setup
