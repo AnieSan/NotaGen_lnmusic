@@ -27,6 +27,7 @@ NAME =  EXP_TAG + \
         "_p_size_" + str(PATCH_SIZE) + \
         "_p_length_" + str(PATCH_LENGTH) + \
         "_p_layers_" + str(PATCH_NUM_LAYERS) + \
+        "_c_layers_" + str(CHAR_NUM_LAYERS) + \
         "_h_size_" + str(HIDDEN_SIZE) + \
         "_lr_" + str(LEARNING_RATE)
 
