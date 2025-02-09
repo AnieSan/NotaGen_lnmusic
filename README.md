@@ -15,9 +15,9 @@ NotaGen is a symbolic music generation model aims to explore the potential of pr
 We provide pre-trained weights of different scales:
 |  Models         |  Parameters  |  Patch-level Decoder Layers  |  Character-level Decoder Layers  |  Hidden Size  |  Patch Length (Context Length)  |
 |  ----           |  ----  |  ---- |  ----  |  ----  |  ----  |
-|  NotaGen-small  | 110M   |  12   |  3     |  768   |  2048  |
-|  NotaGen-medium | 244M   |  16   |  3     |  1024  |  2048  |
-|  NotaGen-large  | 516M   |  20   |  6     |  1280  |  1024  |
+|  [NotaGen-small](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain_p_size_16_p_length_2048_p_layers_12_c_layers_3_h_size_768_lr_0.0002_batch_8.pth)  | 110M   |  12   |  3     |  768   |  2048  |
+|  [NotaGen-medium](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain_p_size_16_p_length_2048_p_layers_16_c_layers_3_h_size_1024_lr_0.0001_batch_4.pth) | 244M   |  16   |  3     |  1024  |  2048  |
+|  [NotaGen-large](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth)  | 516M   |  20   |  6     |  1280  |  1024  |
 
 
 ## Environment Setup
