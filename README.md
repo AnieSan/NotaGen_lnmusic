@@ -12,6 +12,7 @@ NotaGen is a symbolic music generation model aims to explore the potential of pr
 
 ## NotaGen Model Weights
 
+### Pre-training
 We provide pre-trained weights of different scales:
 |  Models         |  Parameters  |  Patch-level Decoder Layers  |  Character-level Decoder Layers  |  Hidden Size  |  Patch Length (Context Length)  |
 |  ----           |  ----  |  ---- |  ----  |  ----  |  ----  |
@@ -19,6 +20,13 @@ We provide pre-trained weights of different scales:
 |  [NotaGen-medium](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain_p_size_16_p_length_2048_p_layers_16_c_layers_3_h_size_1024_lr_0.0001_batch_4.pth) | 244M   |  16   |  3     |  1024  |  2048  |
 |  [NotaGen-large](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth)  | 516M   |  20   |  6     |  1280  |  1024  |
 
+### Fine-tuning
+
+We fine-tuned NotaGen-large on a corpus of approximately 9k classical pieces. You can download the weights [here](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain-finetune_p_size_16_p_length_1024_p_layers_c_layers_6_20_h_size_1280_lr_1e-05_batch_1.pth).
+
+### Reinforcement-Learning
+
+After pre-training and fine-tuning, we optimized NotaGen-large with 3 iterations of CLaMP-DPO. You can download the weights [here](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain-finetune-RL3_beta_0.1_lambda_10_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-06_batch_1.pth).
 
 ## Environment Setup
 
