@@ -19,7 +19,6 @@ NUM_EPOCHS = 64                                                 # Number of epoc
 ACCUMULATION_STEPS = 1                                          # Accumulation steps to simulate large batch size
 PATCH_SAMPLING_BATCH_SIZE = 0                                   # Batch size for patch during training, 0 for full conaudio
 LOAD_FROM_CHECKPOINT = False                                    # Whether to load weights from a checkpoint
-LOAD_FROM_PRE_CHECKPOINT = True                                 # Whether to load pre-trained weights from a checkpoint
 WANDB_LOGGING = False                                           # Whether to log to wandb
 WANDB_KEY = '<your_wandb_key>'
 
