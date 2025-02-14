@@ -289,58 +289,56 @@ if __name__ == "__main__":
     model = model.to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=LEARNING_RATE)
 
-    if LOAD_FROM_PRE_CHECKPOINT and os.path.exists(PRETRAINED_PATH):
-        # Load checkpoint to CPU
-        checkpoint = torch.load(PRETRAINED_PATH, map_location='cpu')
-
-        # Here, model is assumed to be on GPU
-        # Load state dict to CPU model first, then move the model to GPU
-        if torch.cuda.device_count() > 1:
-            # If you have a DataParallel model, you need to load to model.module instead
-            cpu_model = deepcopy(model.module)
-            cpu_model.load_state_dict(checkpoint['model'])
-            model.module.load_state_dict(cpu_model.state_dict())
+    if not LOAD_FROM_CHECKPOINT:
+        if os.path.exists(PRETRAINED_PATH):
+            # Load pre-trained checkpoint to CPU
+            checkpoint = torch.load(PRETRAINED_PATH, map_location='cpu')
+    
+            # Here, model is assumed to be on GPU
+            # Load state dict to CPU model first, then move the model to GPU
+            if torch.cuda.device_count() > 1:
+                # If you have a DataParallel model, you need to load to model.module instead
+                cpu_model = deepcopy(model.module)
+                cpu_model.load_state_dict(checkpoint['model'])
+                model.module.load_state_dict(cpu_model.state_dict())
+            else:
+                # Load to a CPU clone of the model, then load back
+                cpu_model = deepcopy(model)
+                cpu_model.load_state_dict(checkpoint['model'])
+                model.load_state_dict(cpu_model.state_dict())
+                
+            print(f"Successfully Loaded Pretrained Checkpoint at Epoch {checkpoint['epoch']} with Loss {checkpoint['min_eval_loss']}")
         else:
-            # Load to a CPU clone of the model, then load back
-            cpu_model = deepcopy(model)
-            cpu_model.load_state_dict(checkpoint['model'])
-            model.load_state_dict(cpu_model.state_dict())
+            raise Exception('Pre-trained Checkpoint not found. Please check your pre-trained ckpt path.')
             
-        print(f"Successfully Loaded Pretrained Checkpoint at Epoch {checkpoint['epoch']} with Loss {checkpoint['min_eval_loss']}")
-    
     else:
-        pre_epoch = 0
-        best_epoch = 0
-        min_eval_loss = 100
-
-    if LOAD_FROM_CHECKPOINT and os.path.exists(WEIGHTS_PATH):
-        # Load checkpoint to CPU
-        checkpoint = torch.load(WEIGHTS_PATH, map_location='cpu')
-
-        # Here, model is assumed to be on GPU
-        # Load state dict to CPU model first, then move the model to GPU
-        if torch.cuda.device_count() > 1:
-            # If you have a DataParallel model, you need to load to model.module instead
-            cpu_model = deepcopy(model.module)
-            cpu_model.load_state_dict(checkpoint['model'])
-            model.module.load_state_dict(cpu_model.state_dict())
+        if os.path.exists(WEIGHTS_PATH):
+            # Load checkpoint to CPU
+            checkpoint = torch.load(WEIGHTS_PATH, map_location='cpu')
+    
+            # Here, model is assumed to be on GPU
+            # Load state dict to CPU model first, then move the model to GPU
+            if torch.cuda.device_count() > 1:
+                # If you have a DataParallel model, you need to load to model.module instead
+                cpu_model = deepcopy(model.module)
+                cpu_model.load_state_dict(checkpoint['model'])
+                model.module.load_state_dict(cpu_model.state_dict())
+            else:
+                # Load to a CPU clone of the model, then load back
+                cpu_model = deepcopy(model)
+                cpu_model.load_state_dict(checkpoint['model'])
+                model.load_state_dict(cpu_model.state_dict())
+            optimizer.load_state_dict(checkpoint['optimizer'])
+            lr_scheduler.load_state_dict(checkpoint['lr_sched'])
+            pre_epoch = checkpoint['epoch']
+            best_epoch = checkpoint['best_epoch']
+            min_eval_loss = checkpoint['min_eval_loss']
+            print("Successfully Loaded Checkpoint from Epoch %d" % pre_epoch)
+            checkpoint = None
+            
         else:
-            # Load to a CPU clone of the model, then load back
-            cpu_model = deepcopy(model)
-            cpu_model.load_state_dict(checkpoint['model'])
-            model.load_state_dict(cpu_model.state_dict())
-        optimizer.load_state_dict(checkpoint['optimizer'])
-        lr_scheduler.load_state_dict(checkpoint['lr_sched'])
-        pre_epoch = checkpoint['epoch']
-        best_epoch = checkpoint['best_epoch']
-        min_eval_loss = checkpoint['min_eval_loss']
-        print("Successfully Loaded Checkpoint from Epoch %d" % pre_epoch)
-        checkpoint = None
+            raise Exception('Checkpoint not found to continue training. Please check your parameter settings.')
     
-    else:
-        pre_epoch = 0
-        best_epoch = 0
-        min_eval_loss = 100
 
     for epoch in range(1+pre_epoch, NUM_EPOCHS+1):
         train_sampler.set_epoch(epoch)
