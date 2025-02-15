@@ -103,7 +103,7 @@ Here we give an example on fine-tuning NotaGen-large with the Schubert's lieder 
 - Use this command for fine-tuning
   ```
   cd finetune/
-  python train-gen.py
+  CUDA_VISIBLE_DEVICES=0 python train-gen.py
   ```
 
 ## Reinforcement Learning (CLaMP-DPO)
