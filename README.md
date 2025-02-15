@@ -206,7 +206,7 @@ You can also modify other parameters like ```OPTIMATION_STEPS``` and DPO hyper-p
 Run this script:
 ```
 cd RL/
-python train.py
+CUDA_VISIBLE_DEVICES=0 python train.py
 ```
 After training, a model named ```weights_notagen_schubert-RL1_beta_0.1_lambda_10_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-06.pth``` will be saved under ```RL/```. For the second round of CLaMP-DPO, please go back to the first inference stage, and let the new model to generate pieces.
 
