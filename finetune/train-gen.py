@@ -308,6 +308,10 @@ if __name__ == "__main__":
                 model.load_state_dict(cpu_model.state_dict())
                 
             print(f"Successfully Loaded Pretrained Checkpoint at Epoch {checkpoint['epoch']} with Loss {checkpoint['min_eval_loss']}")
+
+            pre_epoch = 0
+            best_epoch = 0
+            min_eval_loss = 100
         else:
             raise Exception('Pre-trained Checkpoint not found. Please check your pre-trained ckpt path.')
             
@@ -335,7 +339,7 @@ if __name__ == "__main__":
             min_eval_loss = checkpoint['min_eval_loss']
             print("Successfully Loaded Checkpoint from Epoch %d" % pre_epoch)
             checkpoint = None
-            
+
         else:
             raise Exception('Checkpoint not found to continue training. Please check your parameter settings.')
     
@@ -368,4 +372,3 @@ if __name__ == "__main__":
     if global_rank==0:
         print("Best Eval Epoch : "+str(best_epoch))
         print("Min Eval Loss : "+str(min_eval_loss))
-
