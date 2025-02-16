@@ -240,11 +240,6 @@ def inference_patch(prompt_lines=[], pieces=NUM_SAMPLES):
             filename = time.strftime("%Y%m%d-%H%M%S") + \
                     "_" + format(generation_time_cost, '.2f') + '_' + str(file_no) + ".abc"
                     
-            # original
-            original_output_path = os.path.join(ORIGINAL_OUTPUT_FOLDER, filename)
-            with open(original_output_path, 'w') as w:
-                w.write(abc_text)
-
             # unreduce
             unreduced_output_path = os.path.join(INTERLEAVED_OUTPUT_FOLDER, filename)
             
@@ -258,11 +253,16 @@ def inference_patch(prompt_lines=[], pieces=NUM_SAMPLES):
                     file.writelines(abc_lines)
             except:
                 pass
+            else:
+                # original
+                original_output_path = os.path.join(ORIGINAL_OUTPUT_FOLDER, filename)
+                with open(original_output_path, 'w') as w:
+                    w.write(abc_text)
 
-            file_no += 1
+                file_no += 1
 
         else:
-            pass
+            print('failed')
 
 
 
