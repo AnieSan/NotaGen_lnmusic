@@ -92,7 +92,7 @@ Here we give an example on fine-tuning NotaGen-large with the Schubert's lieder 
   ```python
   # Configuration for the data
   DATA_TRAIN_INDEX_PATH = "../data/schubert_augmented_train.jsonl" 
-  DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_train.jsonl"
+  DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_eval.jsonl"
   ```
   - Modify the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
   ```python
