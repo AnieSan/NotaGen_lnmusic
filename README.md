@@ -1,5 +1,9 @@
 # 🎵 NotaGen: Advancing Musicality in Symbolic Music Generation with Large Language Model Training Paradigms
 
+[![ArXiv Paper](https://img.shields.io/badge/ArXiv-Paper-%23B31B1B?logo=arxiv)](https://arxiv.org/abs/XXXX.XXXXX)  
+[![HuggingFace](https://img.shields.io/badge/🤗%20HuggingFace-Model-%23FFD21F?logo=huggingface)](https://huggingface.co/ElectricOnes/NotaGen)  
+[![Web Demo](https://img.shields.io/badge/🌐%20Web-Demo-%23007ACC?logo=google-chrome)]([#](https://electricalexis.github.io/notagen-demo/))
+
 <p align="center">
   <img src="notagen.png" alt="NotaGen" width="50%">
 </p>
@@ -103,7 +107,7 @@ Here we give an example on fine-tuning **NotaGen-large** with the **Schubert's l
     ```python
     PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
     ```
-  - ```EXP_TAG``` is for differentiating the models. It will be integrated into the ckpt's name. We can set it to ```schubert```.
+  - ```EXP_TAG``` is for differentiating the models. It will be integrated into the ckpt's name. Here we set it to ```schubert```.
   - You can also modify other parameters like the learning rate.
 
 ### Execution
@@ -227,6 +231,10 @@ For this small experiment on **Schubert's lieder** data, we post our **Average C
 
 If you are interested in this method, have a try on your own style-specific dataset :D
 
-## Links
+## 📚 Citation
+
+If you find **NotaGen** or **CLaMP-DPO** useful in your work, please cite our paper.
+
+## 🔗 Links
 - [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
 - [CLaMP 2 Code](https://github.com/sanderwood/clamp2)
