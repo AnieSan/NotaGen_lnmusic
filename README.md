@@ -1,17 +1,19 @@
-# NotaGen: Advancing Musicality in Symbolic Music Generation with Large Language Model Training Paradigms
+# 🎵 NotaGen: Advancing Musicality in Symbolic Music Generation with Large Language Model Training Paradigms
 
 <p align="center">
   <img src="notagen.png" alt="NotaGen" width="50%">
 </p>
 
 
-## Overview
-NotaGen is a symbolic music generation model aims to explore the potential of producing high-quality classical sheet music. Inspired by the success of Large Language Models (LLMs), NotaGen adopts pre-training, fine-tuning, and reinforcement learning paradigms. It is pre-trained on 1.6M pieces of music, and then fine-tuned on approximately 9K high-quality classical compositions conditioned on ''period-composer-instrumentation''  prompts. For reinforcement learning, we propose the CLaMP-DPO method, which further enhances generation quality and controllability without requiring human annotations or predefined rewards. 
+## 📖 Overview
+**NotaGen** is a symbolic music generation model that explores the potential of producing **high-quality classical sheet music**. Inspired by the success of Large Language Models (LLMs), NotaGen adopts a three-stage training paradigm:
+- 🏋️ **Pre-training** on 1.6M musical pieces
+- 🎯 **Fine-tuning** on ~9K classical compositions with `period-composer-instrumentation` prompts
+- 🚀 **Reinforcement Learning** using our novel **CLaMP-DPO** method (no human annotations required!)
 
+## ⚙️ Environment Setup
 
-## Environment Setup
-
-```python
+```bash
 conda create --name notagen python=3.10
 conda activate notagen
 conda install pytorch==2.3.0 pytorch-cuda=11.8 -c pytorch -c nvidia
@@ -20,7 +22,7 @@ pip install optimum
 pip install -r requirements.txt
 ```
 
-## NotaGen Model Weights
+## 🏋️ NotaGen Model Weights
 
 ### Pre-training
 We provide pre-trained weights of different scales:
@@ -38,7 +40,7 @@ We fine-tuned NotaGen-large on a corpus of approximately 9k classical pieces. Yo
 
 After pre-training and fine-tuning, we optimized NotaGen-large with 3 iterations of CLaMP-DPO. You can download the weights [here](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain-finetune-RL3_beta_0.1_lambda_10_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-06_batch_1.pth).
 
-### NotaGen-X
+### 🌟 NotaGen-X
 
 Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen and released a better version --- [NotaGen-X](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagenx_p_size_16_p_length_1024_p_layers_20_h_size_1280.pth). Compared to the version in the paper, NotaGen-X incorporates the following improvements:
 
@@ -47,7 +49,7 @@ Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen
 - After RL, we utilized the resulting checkpoint to gather a new set of post-training data. Starting from the pre-trained checkpoint, we conducted another round of post-training, fine-tuning, and reinforcement learning.
 
 
-## Local Gradio Demo
+## 🎹 Local Gradio Demo
 
 We developed a local Gradio demo for NotaGen-X. You can input "Period-Composer-Instrumentation" as the prompt to have NotaGen generate music！
 
@@ -218,4 +220,3 @@ If you are interested in this method, have a try on your own style-specific data
 ## Links
 - [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
 - [CLaMP 2 Code](https://github.com/sanderwood/clamp2)
-
