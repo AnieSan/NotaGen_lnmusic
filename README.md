@@ -52,6 +52,10 @@ Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen
 
 ## Local Gradio Demo
 
+<p align="center">
+  <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
+</p>
+
 
 ## Data Pre-processing & Post-processing
 
