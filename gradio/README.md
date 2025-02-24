@@ -21,7 +21,7 @@
 3. Then you can view the demo page at 0.0.0.0:7861.
 
   <p align="center">
-  <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
+  <img src="illustration.png" alt="NotaGen Gradio Demo">
   </p>
   
   You can choose period, composer, and instrumentation as a prompt for NotaGen's conditional generation. It is with some regret that the current combination of prompts is limited to 112, which is constrained by the number of pieces of music under each prompt in the fine-tuning dataset. We hope to expand the combinations and forms of prompts in the future.
