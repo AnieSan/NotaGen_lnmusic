@@ -24,4 +24,6 @@
   <img src="illustration.png" alt="NotaGen Gradio Demo">
   </p>
   
-  You can choose period, composer, and instrumentation as a prompt for NotaGen's conditional generation. It is with some regret that the current combination of prompts is limited to 112, which is constrained by the number of pieces of music under each prompt in the fine-tuning dataset. We hope to expand the combinations and forms of prompts in the future.
+  You can choose period, composer, and instrumentation as a prompt combination for NotaGen's conditional generation. After generation completes, you can save the ABC notation and MusicXML files locally.
+  
+  It is with some regret that the current combination of prompts is limited to 112, which is constrained by the number of pieces of music under each prompt in the fine-tuning dataset. We hope to expand the combinations and forms of prompts in the future.
