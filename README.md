@@ -28,6 +28,14 @@ We fine-tuned NotaGen-large on a corpus of approximately 9k classical pieces. Yo
 
 After pre-training and fine-tuning, we optimized NotaGen-large with 3 iterations of CLaMP-DPO. You can download the weights [here](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagen_pretrain-finetune-RL3_beta_0.1_lambda_10_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-06_batch_1.pth).
 
+### NotaGen-X
+
+Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen and released a better version --- NotaGen-X. Compared to the version in the paper, NotaGen-X incorporates the following improvements:
+
+- We introduced a post-training stage between pre-training and fine-tuning, refining the model with a classical-style subset of the pre-training dataset.
+- We removed the key augmentation in the Fine-tune stage, making the instrument range of the generated compositions more reasonable.
+- After RL, we utilized the resulting checkpoint to gather a new set of post-training data. Starting from the pre-trained checkpoint, we conducted another round of post-training, fine-tuning, and reinforcement learning.
+
 ## Environment Setup
 
 ```python
