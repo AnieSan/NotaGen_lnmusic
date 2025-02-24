@@ -28,6 +28,8 @@
 - 🎯 **Fine-tuning** on ~9K classical compositions with `period-composer-instrumentation` prompts
 - 🚀 **Reinforcement Learning** using our novel **CLaMP-DPO** method (no human annotations or pre-defined rewards required.)
 
+Check our [demo page](https://electricalexis.github.io/notagen-demo/) and enjoy music composed by NotaGen!
+
 ## ⚙️ Environment Setup
 
 ```bash
