@@ -6,12 +6,6 @@
 NotaGen is a symbolic music generation model aims to explore the potential of producing high-quality classical sheet music. Inspired by the success of Large Language Models (LLMs), NotaGen adopts pre-training, fine-tuning, and reinforcement learning paradigms. It is pre-trained on 1.6M pieces of music, and then fine-tuned on approximately 9K high-quality classical compositions conditioned on ''period-composer-instrumentation''  prompts. For reinforcement learning, we propose the CLaMP-DPO method, which further enhances generation quality and controllability without requiring human annotations or predefined rewards. 
 
 
-## Links
-- [NotaGen Model Weights](https://huggingface.co/ElectricOnes/NotaGen)
-- [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
-- [CLaMP 2 Code](https://github.com/sanderwood/clamp2)
-
-
 ## Environment Setup
 
 ```python
@@ -52,9 +46,13 @@ Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen
 
 ## Local Gradio Demo
 
+We developed a local Gradio demo for NotaGen-X. You can input "Period-Composer-Instrumentation" as the prompt to have NotaGen generate music！
+
 <p align="center">
   <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
 </p>
+
+Deploying NotaGen-X inference locally requires at least 40GB of GPU memory. For implementation details, please view [gradio/demo](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
 
 
 ## Data Pre-processing & Post-processing
@@ -78,7 +76,7 @@ accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ## Fine-tune
 
 Here we give an example on fine-tuning NotaGen-large with the Schubert's lieder data mentioned above.
-Notice: The use of NotaGen-large requires a GPU with over 40GB of VRAM for training and inference. Alternatively, you may use NotaGen-small or NotaGen-medium and change the configuration of models in config.py.
+Notice: The use of NotaGen-large requires at least 40GB of GPU memory for training and inference. Alternatively, you may use NotaGen-small or NotaGen-medium and change the configuration of models in config.py.
 
 - In ```finetune/config.py```:
   - Modify the ```DATA_TRAIN_INDEX_PATH``` and ```DATA_EVAL_INDEX_PATH```:
@@ -213,4 +211,7 @@ For this small experiment on Schubert's lieder data, we post our Average CLaMP 2
 
 If you are interested in this method, have a try on your own style-specific dataset :D
 
+## Links
+- [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
+- [CLaMP 2 Code](https://github.com/sanderwood/clamp2)
 
