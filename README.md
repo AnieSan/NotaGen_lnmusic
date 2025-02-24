@@ -1,5 +1,8 @@
 # NotaGen: Advancing Musicality in Symbolic Music Generation with Large Language Model Training Paradigms
 
+<p align="center">
+  <img src="notagen.png" alt="NotaGen" width="50%">
+</p>
 
 
 ## Overview
