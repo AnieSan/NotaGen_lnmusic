@@ -111,6 +111,7 @@ Use this command for fine-tuning:
 ```bash
 cd finetune/
 CUDA_VISIBLE_DEVICES=0 python train-gen.py
+```
 
 ## 🚀 Reinforcement Learning (CLaMP-DPO)
 
