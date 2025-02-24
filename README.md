@@ -1,16 +1,19 @@
 # 🎵 NotaGen: Advancing Musicality in Symbolic Music Generation with Large Language Model Training Paradigms
 
 <p align="center">
+  <!-- ArXiv -->
   <a href="https://arxiv.org/abs/XXXX.XXXXX">
-    <img src="https://img.shields.io/badge/ArXiv-Paper-%23B31B1B?logo=arxiv" alt="ArXiv Paper">
+    <img src="https://img.shields.io/badge/NotaGen_Paper-ArXiv-%23B31B1B?logo=arxiv&logoColor=white" alt="Paper">
   </a>
   &nbsp;&nbsp;
+  <!-- HuggingFace -->
   <a href="https://huggingface.co/ElectricOnes/NotaGen">
-    <img src="https://img.shields.io/badge/%20HuggingFace-Model-%23FFD21F?logo=huggingface" alt="NotaGen Weights">
+    <img src="https://img.shields.io/badge/NotaGen_Weights-HuggingFace-%23FFD21F?logo=huggingface&logoColor=white" alt="Weights">
   </a>
   &nbsp;&nbsp;
+  <!-- Web Demo -->
   <a href="https://electricalexis.github.io/notagen-demo/">
-    <img src="https://img.shields.io/badge/%20Web-Demo-%23007ACC?logo=google-chrome" alt="NotaGen Demo">
+    <img src="https://img.shields.io/badge/NotaGen_Demo-Web-%23007ACC?logo=google-chrome&logoColor=white" alt="Demo">
   </a>
 </p>
 
