@@ -68,7 +68,7 @@ In the instructions of Fine-tuning and Reinforcement Learning below, we will use
 
 
 ## Pre-train
-If you want to use your own data to pre-train a blank NotaGen model, please preprocess the data and generate the data index files following the instructions above. Then modify the parameters in ```pretrain/config.py```.
+If you want to use your own data to pre-train a blank NotaGen model, please preprocess the data and generate the data index files following the instructions in [data/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/data/README.md). Then modify the parameters in ```pretrain/config.py```.
 
 Use this command for pre-training:
 ```
@@ -79,7 +79,8 @@ accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ## Fine-tune
 
 Here we give an example on fine-tuning NotaGen-large with the Schubert's lieder data mentioned above.
-Notice: The use of NotaGen-large requires at least 40GB of GPU memory for training and inference. Alternatively, you may use NotaGen-small or NotaGen-medium and change the configuration of models in config.py.
+
+Notice: The use of NotaGen-large requires at least 40GB of GPU memory for training and inference. Alternatively, you may use NotaGen-small or NotaGen-medium and change the configuration of models in ```finetune/config.py```.
 
 - In ```finetune/config.py```:
   - Modify the ```DATA_TRAIN_INDEX_PATH``` and ```DATA_EVAL_INDEX_PATH```:
