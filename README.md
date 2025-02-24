@@ -30,11 +30,13 @@ After pre-training and fine-tuning, we optimized NotaGen-large with 3 iterations
 
 ### NotaGen-X
 
-Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen and released a better version --- NotaGen-X. Compared to the version in the paper, NotaGen-X incorporates the following improvements:
+Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen and released a better version --- [NotaGen-X](https://huggingface.co/ElectricOnes/NotaGen/blob/main/weights_notagenx_p_size_16_p_length_1024_p_layers_20_h_size_1280.pth). Compared to the version in the paper, NotaGen-X incorporates the following improvements:
 
 - We introduced a post-training stage between pre-training and fine-tuning, refining the model with a classical-style subset of the pre-training dataset.
 - We removed the key augmentation in the Fine-tune stage, making the instrument range of the generated compositions more reasonable.
 - After RL, we utilized the resulting checkpoint to gather a new set of post-training data. Starting from the pre-trained checkpoint, we conducted another round of post-training, fine-tuning, and reinforcement learning.
+
+
 
 ## Environment Setup
 
@@ -77,6 +79,7 @@ Here we give an example on fine-tuning NotaGen-large with the Schubert's lieder 
   DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_eval.jsonl"
   ```
   - Modify the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
+    (The use of NotaGen-large requires a GPU with over 40GB of VRAM for training and inference. Alternatively, you may use NotaGen-small or NotaGen-medium and change the configuration of models in config.py)
   ```python
   PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
   ```
