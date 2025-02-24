@@ -51,7 +51,7 @@ Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen
 
 ## 🎹 Local Gradio Demo
 
-We developed a local Gradio demo for NotaGen-X. You can input "Period-Composer-Instrumentation" as the prompt to have NotaGen generate music！
+We developed a local Gradio demo for NotaGen-X. You can input **"Period-Composer-Instrumentation"** as the prompt to have NotaGen generate music！
 
 <p align="center">
   <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
@@ -60,13 +60,18 @@ We developed a local Gradio demo for NotaGen-X. You can input "Period-Composer-I
 Deploying NotaGen-X inference locally requires at least 40GB of GPU memory. For implementation details, please view [gradio/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
 
 
-## Data Pre-processing & Post-processing
+## 🛠️ Data Pre-processing & Post-processing
 
-For converting ABC notation files from / to MusicXML files, please view [data/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/data/README.md) for instructions.
+For converting **ABC notation** files from / to **MusicXML** files, please view [data/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/data/README.md) for instructions.
 
-To illustrate the specific data format, we provide a small dataset of Schubert's lieder compositions from the [OpenScore Lieder](https://github.com/OpenScore/Lieder), which includes interleaved ABC folders, augmented ABC folders, as well as data index files for training and evaluation. You can download it [here](https://drive.google.com/drive/folders/1iVLkcywzXGcHFodce9nDQyEmK4UDmBtY?usp=sharing) and put it under ```data/```.
+To illustrate the specific data format, we provide a small dataset of **Schubert's lieder** compositions from the [OpenScore Lieder](https://github.com/OpenScore/Lieder), which includes:
+- 🗂️ Interleaved ABC folders
+- 🗂️ Augmented ABC folders
+- 📄 Data index files for training and evaluation
 
-In the instructions of Fine-tuning and Reinforcement Learning below, we will use this dataset as an example of our implementation. It won't include the "period-composer-instrumentation" conditioning, just for showing how to adapt the pretrained NotaGen to a specific music style.
+You can download it [here](https://drive.google.com/drive/folders/1iVLkcywzXGcHFodce9nDQyEmK4UDmBtY?usp=sharing) and put it under ```data/```.
+
+In the instructions of **Fine-tuning** and **Reinforcement Learning** below, we will use this dataset as an example of our implementation. **It won't include the "period-composer-instrumentation" conditioning**, just for showing how to adapt the pretrained NotaGen to a specific music style.
 
 
 ## Pre-train
