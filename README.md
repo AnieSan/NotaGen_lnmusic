@@ -52,7 +52,7 @@ We developed a local Gradio demo for NotaGen-X. You can input "Period-Composer-I
   <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
 </p>
 
-Deploying NotaGen-X inference locally requires at least 40GB of GPU memory. For implementation details, please view [gradio/demo](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
+Deploying NotaGen-X inference locally requires at least 40GB of GPU memory. For implementation details, please view [gradio/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
 
 
 ## Data Pre-processing & Post-processing
