@@ -47,35 +47,9 @@ pip install optimum
 pip install -r requirements.txt
 ```
 
-## Data Pre-processing
+## Data Pre-processing & Post-processing
 
-### Convert from MusicXML
-
-- Navigate to the data folder ```cd data/```
-- Modify the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```1_batch_xml2abc.py```, then run this script:
-  ```
-  python 1_batch_xml2abc.py
-  ```
-  This will conver the MusicXML files into standard ABC notation files.
-- Modify the ```ORI_FOLDER```, ```INTERLEAVED_FOLDER```, ```AUGMENTED_FOLDER```, and ```EVAL_SPLIT``` in ```2_data_preprocess.py```:
-  
-  ```python
-  ORI_FOLDER = ''  # Folder containing standard ABC notation files
-  INTERLEAVED_FOLDER = ''   # Output interleaved ABC notation files that are compatible with CLaMP 2 to this folder
-  AUGMENTED_FOLDER = ''   # On the basis of interleaved ABC, output key-augmented and rest-omitted files that are compatible with NotaGen to this folder
-  EVAL_SPLIT = 0.1    # Evaluation data ratio
-  ```
-  then run this script:
-  ```
-  python 2_data_preprocess.py
-  ```
-  - The script will convert the standard ABC to interleaved ABC, which is compatible with CLaMP 2. The files will be under ```INTERLEAVED_FOLDER```.
-
-  - This script will make 15 key signature folders under the ```AUGMENTED_FOLDER```, and output interleaved ABC notation files with rest bars omitted. This is the data representation that NotaGen adopts.
-  
-  - This script will also generate data index files for training NotaGen. It will randomly split train and eval sets according to the proportion ```EVAL_SPLIT``` defines. The index files will be named as ```{AUGMENTED_FOLDER}_train.jsonl``` and ```{AUGMENTED_FOLDER}_eval.jsonl```.
-
-### Data Examples
+For converting ABC notation files from / to MusicXML files, please view [data/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/data/README.md) for instructions.
 
 To illustrate the specific data format, we provide a small dataset of Schubert's lieder compositions from the [OpenScore Lieder](https://github.com/OpenScore/Lieder), which includes interleaved ABC folders, augmented ABC folders, as well as data index files for training and evaluation. You can download it [here](https://drive.google.com/drive/folders/1iVLkcywzXGcHFodce9nDQyEmK4UDmBtY?usp=sharing) and put it under ```data/```.
 
@@ -225,23 +199,7 @@ For this small experiment on Schubert's lieder data, we post our Average CLaMP 2
 |  0 (fine-tuned) | 0.324  |  
 |  1              | 0.579  |
 |  2              | 0.778  |
-|  3              | 0.823  |
 
 If you are interested in this method, have a try on your own style-specific dataset :D
-
-## Data Post-processing
-
-### Preview Sheets in ABC Notation
-
-We recommend [EasyABC](https://sourceforge.net/projects/easyabc/), a nice software for ABC Notation previewing, composing and editing.
-
-### Convert to MusicXML
-
-- Go to the data folder ```cd data/```
-- Modify the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```3_batch_abc2xml.py```, then run this script:
-  ```
-  python 3_batch_abc2xml.py
-  ```
-  This will conver the standard/interleaved ABC notation files into MusicXML files.
 
 
