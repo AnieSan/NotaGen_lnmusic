@@ -6,6 +6,11 @@
     <img src="https://img.shields.io/badge/NotaGen_Paper-ArXiv-%23B31B1B?logo=arxiv&logoColor=white" alt="Paper">
   </a>
   &nbsp;&nbsp;
+  <!-- GitHub -->
+  <a href="https://github.com/ElectricAlexis/NotaGen">
+    <img src="https://img.shields.io/badge/NotaGen_Code-GitHub-%23181717?logo=github&logoColor=white" alt="GitHub">
+  </a>
+  &nbsp;&nbsp;
   <!-- HuggingFace -->
   <a href="https://huggingface.co/ElectricOnes/NotaGen">
     <img src="https://img.shields.io/badge/NotaGen_Weights-HuggingFace-%23FFD21F?logo=huggingface&logoColor=white" alt="Weights">
