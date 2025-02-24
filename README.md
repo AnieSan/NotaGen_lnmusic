@@ -7,9 +7,9 @@
 
 ## 📖 Overview
 **NotaGen** is a symbolic music generation model that explores the potential of producing **high-quality classical sheet music**. Inspired by the success of Large Language Models (LLMs), NotaGen adopts a three-stage training paradigm:
-- 🏋️ **Pre-training** on 1.6M musical pieces
+- 🧠 **Pre-training** on 1.6M musical pieces
 - 🎯 **Fine-tuning** on ~9K classical compositions with `period-composer-instrumentation` prompts
-- 🚀 **Reinforcement Learning** using our novel **CLaMP-DPO** method (no human annotations required!)
+- 🚀 **Reinforcement Learning** using our novel **CLaMP-DPO** method (no human annotations or pre-defined rewards required.)
 
 ## ⚙️ Environment Setup
 
@@ -74,51 +74,55 @@ You can download it [here](https://drive.google.com/drive/folders/1iVLkcywzXGcHF
 In the instructions of **Fine-tuning** and **Reinforcement Learning** below, we will use this dataset as an example of our implementation. **It won't include the "period-composer-instrumentation" conditioning**, just for showing how to adapt the pretrained NotaGen to a specific music style.
 
 
-## Pre-train
-If you want to use your own data to pre-train a blank NotaGen model, please preprocess the data and generate the data index files following the instructions in [data/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/data/README.md). Then modify the parameters in ```pretrain/config.py```.
+## 🧠 Pre-train
+If you want to use your own data to pre-train a blank **NotaGen** model, please:
+1. Preprocess the data and generate the data index files following the instructions in [data/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/data/README.md)
+2. Modify the parameters in ```pretrain/config.py```
 
 Use this command for pre-training:
-```
+```bash
 cd pretrain/
 accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 ```
 
-## Fine-tune
+## 🎯 Fine-tune
 
-Here we give an example on fine-tuning NotaGen-large with the Schubert's lieder data mentioned above.
+Here we give an example on fine-tuning **NotaGen-large** with the **Schubert's lieder** data mentioned above.
 
-Notice: The use of NotaGen-large requires at least 40GB of GPU memory for training and inference. Alternatively, you may use NotaGen-small or NotaGen-medium and change the configuration of models in ```finetune/config.py```.
+**Notice:** The use of **NotaGen-large** requires at least **40GB of GPU memory** for training and inference. Alternatively, you may use **NotaGen-small** or **NotaGen-medium** and change the configuration of models in ```finetune/config.py```.
 
+### Configuration
 - In ```finetune/config.py```:
   - Modify the ```DATA_TRAIN_INDEX_PATH``` and ```DATA_EVAL_INDEX_PATH```:
-  ```python
-  # Configuration for the data
-  DATA_TRAIN_INDEX_PATH = "../data/schubert_augmented_train.jsonl" 
-  DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_eval.jsonl"
-  ```
+    ```python
+    # Configuration for the data
+    DATA_TRAIN_INDEX_PATH = "../data/schubert_augmented_train.jsonl" 
+    DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_eval.jsonl"
+    ```
   - Modify the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
-  ```python
-  PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
-  ```
+    ```python
+    PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
+    ```
   - ```EXP_TAG``` is for differentiating the models. It will be integrated into the ckpt's name. We can set it to ```schubert```.
   - You can also modify other parameters like the learning rate.
-- Use this command for fine-tuning
-  ```
-  cd finetune/
-  CUDA_VISIBLE_DEVICES=0 python train-gen.py
-  ```
 
-## Reinforcement Learning (CLaMP-DPO)
+### Execution
+Use this command for fine-tuning:
+```bash
+cd finetune/
+CUDA_VISIBLE_DEVICES=0 python train-gen.py
 
-Here we give an example on how to use CLaMP-DPO to enhance the model fine-tuned with Schubert's lieder data.
+## 🚀 Reinforcement Learning (CLaMP-DPO)
 
-### CLaMP 2 Setup
+Here we give an example on how to use **CLaMP-DPO** to enhance the model fine-tuned with **Schubert's lieder** data.
+
+### ⚙️ CLaMP 2 Setup
 
 Download model weights and put them under the ```clamp2/```folder:
 - [CLaMP 2 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_clamp2_h_size_768_lr_5e-05_batch_128_scale_1_t_length_128_t_model_FacebookAI_xlm-roberta-base_t_dropout_True_m3_True.pth)
 - [M3 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_m3_p_size_64_p_length_512_t_layers_3_p_layers_12_h_size_768_lr_0.0001_batch_16_mask_0.45.pth)
 
-### Extract Ground Truth Features
+### 🔍 Extract Ground Truth Features
 Modify ```input_dir``` and ```output_dir``` in ```clamp2/extract_clamp2.py```:
 ```python
 input_dir = '../data/schubert_interleaved'  # interleaved abc folder
@@ -130,9 +134,9 @@ cd clamp2/
 python extract_clamp2.py
 ```
 
-### CLaMP-DPO
+### 🔄 CLaMP-DPO
 
-Here we give an example of an iteration of CLaMP-DPO from the initial model fine-tuned on Schubert's lieder data.
+Here we give an example of an iteration of **CLaMP-DPO** from the initial model fine-tuned on **Schubert's lieder** data.
 
 #### 1. Inference
 - Modify the ```INFERENCE_WEIGHTS_PATH``` to path of the fine-tuned weights and ```NUM_SAMPLES``` to generate in ```inference/config.py```:
@@ -161,7 +165,7 @@ python extract_clamp2.py
 ```
 
 #### 3. Statistics on Averge CLaMP 2 Score (Optional)
-If you're interested in the Average CLaMP 2 Score of the current model, modify the parameters in ```clamp2/statistics.py```:
+If you're interested in the **Average CLaMP 2 Score** of the current model, modify the parameters in ```clamp2/statistics.py```:
 ```python
 gt_feature_folder = 'feature/schubert_interleaved'
 output_feature_folder = 'feature/weights_notagen_schubert_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-05_batch_1_k_9_p_0.9_temp_1.2'
@@ -182,7 +186,7 @@ output_interleaved_abc_folder = '../output/interleaved/weights_notagen_schubert_
 data_index_path = 'schubert_RL1.json'  # Data for the first iteration of RL
 data_select_portion = 0.1              
 ```
-In this script, the CLaMP 2 Score of each generated piece will be calculated and sorted. The portion of data in the chosen and rejected sets is determined by ```data_select_portion```. Additionally, there are also three rules to exclude problematic sheets from the chosen set: 
+In this script, the **CLaMP 2 Score** of each generated piece will be calculated and sorted. The portion of data in the chosen and rejected sets is determined by ```data_select_portion```. Additionally, there are also three rules to exclude problematic sheets from the chosen set: 
 - Sheets with duration alignment problems are excluded; 
 - Sheets that may plagiarize from ground truth data (similarity>0.95) are excluded; 
 - Sheets where staves for the same instrument are not grouped together are excluded.
@@ -212,7 +216,7 @@ CUDA_VISIBLE_DEVICES=0 python train.py
 ```
 After training, a model named ```weights_notagen_schubert-RL1_beta_0.1_lambda_10_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_1e-06.pth``` will be saved under ```RL/```. For the second round of CLaMP-DPO, please go back to the first inference stage, and let the new model to generate pieces.
 
-For this small experiment on Schubert's lieder data, we post our Average CLaMP 2 Score here for the fine-tuned model and models after each iteration of CLaMP-DPO, as a reference:
+For this small experiment on **Schubert's lieder** data, we post our **Average CLaMP 2 Score** here for the fine-tuned model and models after each iteration of CLaMP-DPO, as a reference:
 
 |  CLaMP-DPO Iteration (K) |  Average CLaMP 2 Score  | 
 |  ----           |  ----  | 
