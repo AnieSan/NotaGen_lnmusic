@@ -11,14 +11,16 @@
   pip install -r requirements.txt
   ```
 
-2. run ```demo.py```:
+2. Download [NotaGen-X](https://huggingface.co/ElectricAlexis/NotaGen/blob/main/weights_notagenx_p_size_16_p_length_1024_p_layers_20_h_size_1280.pth) and put it under ```gradio/```.
+
+3. run ```demo.py```:
 
   ```
   cd gradio/
   python demo.py
   ```
 
-3. Then you can view the demo page at 0.0.0.0:7861.
+4. Then you can view the demo page at 0.0.0.0:7861.
 
   <p align="center">
   <img src="illustration.png" alt="NotaGen Gradio Demo">
