@@ -123,7 +123,7 @@ Here we give an example on fine-tuning **NotaGen-large** with the **Schubert's l
     DATA_TRAIN_INDEX_PATH = "../data/schubert_augmented_train.jsonl" 
     DATA_EVAL_INDEX_PATH  = "../data/schubert_augmented_eval.jsonl"
     ```
-  - Modify the ```PRETRAINED_PATH``` to the pre-trained NotaGen weights:
+  - Download pre-trained NotaGen weights, and modify the ```PRETRAINED_PATH```:
     ```python
     PRETRAINED_PATH = "../pretrain/weights_notagen_pretrain_p_size_16_p_length_1024_p_layers_20_c_layers_6_h_size_1280_lr_0.0001_batch_4.pth"  # Use NotaGen-large
     ```
@@ -213,7 +213,7 @@ data_select_portion = 0.1
 ```
 In this script, the **CLaMP 2 Score** of each generated piece will be calculated and sorted. The portion of data in the chosen and rejected sets is determined by ```data_select_portion```. Additionally, there are also three rules to exclude problematic sheets from the chosen set: 
 - Sheets with duration alignment problems are excluded; 
-- Sheets that may plagiarize from ground truth data (similarity>0.95) are excluded; 
+- Sheets that may plagiarize from ground truth data (ld_sim>0.95) are excluded; 
 - Sheets where staves for the same instrument are not grouped together are excluded.
 
 The prefence data file will be names as ```data_index_path```, which records the file paths in chosen and rejected sets.
