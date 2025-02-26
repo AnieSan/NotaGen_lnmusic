@@ -265,6 +265,7 @@ If you find **NotaGen** or **CLaMP-DPO** useful in your work, please cite our pa
       primaryClass={cs.SD},
       url={https://arxiv.org/abs/2502.18008}, 
 }
+```
 
 ## 🔗 Links
 - [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
