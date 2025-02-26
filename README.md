@@ -2,7 +2,7 @@
 
 <p align="center">
   <!-- ArXiv -->
-  <a href="https://arxiv.org/abs/XXXX.XXXXX">
+  <a href="https://arxiv.org/abs/2502.18008">
     <img src="https://img.shields.io/badge/NotaGen_Paper-ArXiv-%23B31B1B?logo=arxiv&logoColor=white" alt="Paper">
   </a>
   &nbsp;&nbsp;
@@ -254,6 +254,17 @@ If you are interested in this method, have a try on your own style-specific data
 ## 📚 Citation
 
 If you find **NotaGen** or **CLaMP-DPO** useful in your work, please cite our paper.
+
+```bibtex
+@misc{wang2025notagenadvancingmusicalitysymbolic,
+      title={NotaGen: Advancing Musicality in Symbolic Music Generation with Large Language Model Training Paradigms}, 
+      author={Yashan Wang and Shangda Wu and Jianhuai Hu and Xingjian Du and Yueqi Peng and Yongxin Huang and Shuai Fan and Xiaobing Li and Feng Yu and Maosong Sun},
+      year={2025},
+      eprint={2502.18008},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2502.18008}, 
+}
 
 ## 🔗 Links
 - [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
