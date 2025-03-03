@@ -81,7 +81,7 @@ We developed a local Gradio demo for NotaGen-X. You can input **"Period-Composer
   <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
 </p>
 
-Deploying NotaGen-X inference locally requires at least 40GB of GPU memory. For implementation details, please view [gradio/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
+Deploying NotaGen-X inference locally requires at least 24GB of GPU memory. For implementation details, please view [gradio/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
 
 
 ## 🛠️ Data Pre-processing & Post-processing
@@ -113,7 +113,7 @@ accelerate launch --multi_gpu --mixed_precision fp16 train-gen.py
 
 Here we give an example on fine-tuning **NotaGen-large** with the **Schubert's lieder** data mentioned above.
 
-**Notice:** The use of **NotaGen-large** requires at least **40GB of GPU memory** for training and inference. Alternatively, you may use **NotaGen-small** or **NotaGen-medium** and change the configuration of models in ```finetune/config.py```.
+**Notice:** The use of **NotaGen-large** requires at least **24GB of GPU memory** for training and inference. Alternatively, you may use **NotaGen-small** or **NotaGen-medium** and change the configuration of models in ```finetune/config.py```.
 
 ### Configuration
 - In ```finetune/config.py```:
