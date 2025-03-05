@@ -73,7 +73,9 @@ Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen
 - After RL, we utilized the resulting checkpoint to gather a new set of post-training data. Starting from the pre-trained checkpoint, we conducted another round of post-training, fine-tuning, and reinforcement learning.
 
 
-## 🎹 Local Gradio Demo
+## 🎹 Gradio Demo
+
+### Local Gradio Demo
 
 We developed a local Gradio demo for NotaGen-X. You can input **"Period-Composer-Instrumentation"** as the prompt to have NotaGen generate music！
 
@@ -82,6 +84,10 @@ We developed a local Gradio demo for NotaGen-X. You can input **"Period-Composer
 </p>
 
 Deploying NotaGen-X inference locally requires at least 24GB of GPU memory. For implementation details, please view [gradio/README.md](https://github.com/ElectricAlexis/NotaGen/blob/main/gradio/README.md). We are also working on developing an online demo.
+
+### Online Colab Notebook
+
+Thanks for [@deeplearn-art](https://github.com/deeplearn-art/NotaGen)'s contribution of a [Google Colab notebook for NotaGen](https://colab.research.google.com/drive/1yJA1wG0fiwNeehdQxAUw56i4bTXzoVVv?usp=sharing)! You can run it and access to a Gradio public link to play with this demo.
 
 
 ## 🛠️ Data Pre-processing & Post-processing
