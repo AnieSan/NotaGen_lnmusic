@@ -147,7 +147,7 @@ CUDA_VISIBLE_DEVICES=0 python train-gen.py
 
 Here we give an example on how to use **CLaMP-DPO** to enhance the model fine-tuned with **Schubert's lieder** data.
 
-### ⚙️ CLaMP 2 Setup
+### ⚙️ [CLaMP 2](https://github.com/sanderwood/clamp2) Setup
 
 Download model weights and put them under the ```clamp2/```folder:
 - [CLaMP 2 Model Weights](https://huggingface.co/sander-wood/clamp2/blob/main/weights_clamp2_h_size_768_lr_5e-05_batch_128_scale_1_t_length_128_t_model_FacebookAI_xlm-roberta-base_t_dropout_True_m3_True.pth)
@@ -272,7 +272,3 @@ If you find **NotaGen** or **CLaMP-DPO** useful in your work, please cite our pa
       url={https://arxiv.org/abs/2502.18008}, 
 }
 ```
-
-## 🔗 Links
-- [CLaMP 2 Paper](https://arxiv.org/pdf/2410.13267)
-- [CLaMP 2 Code](https://github.com/sanderwood/clamp2)
