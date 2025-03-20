@@ -93,7 +93,7 @@ Thanks for [@deeplearn-art](https://github.com/deeplearn-art/NotaGen)'s contribu
 
 ### ComfyUI
 
-Thanks for [@billwuhao](https://github.com/billwuhao/ComfyUI_NotaGen)'s contribution of [a ComfyUI node for NotaGen](https://github.com/billwuhao/ComfyUI_NotaGen)! Please visit the [repository page](https://github.com/billwuhao/ComfyUI_NotaGen) for more information. 🤩
+Thanks for [@billwuhao](https://github.com/billwuhao/ComfyUI_NotaGen)'s contribution of [a ComfyUI node for NotaGen](https://github.com/billwuhao/ComfyUI_NotaGen)! It can automatically convert generated .abc to .xml, .mp3, and .png formats. You can listen to the generated music and see the sheet music too! Please visit the [repository page](https://github.com/billwuhao/ComfyUI_NotaGen) for more information. 🤩 
 
 <p align="center">
   <img src="https://github.com/billwuhao/ComfyUI_NotaGen/blob/master/images/2025-03-10_06-24-03.png" alt="NotaGen ComfyUI">
