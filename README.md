@@ -74,8 +74,17 @@ Inspired by Deepseek-R1, we further optimized the training procedures of NotaGen
 - We removed the key augmentation in the Fine-tune stage, making the instrument range of the generated compositions more reasonable.
 - After RL, we utilized the resulting checkpoint to gather a new set of post-training data. Starting from the pre-trained checkpoint, we conducted another round of post-training, fine-tuning, and reinforcement learning.
 
+If you want to add a new composer style to NotaGen-X, please refer to issue [#18](https://github.com/ElectricAlexis/NotaGen/issues/18) for more instructions :D
 
 ## 🎹 Demo
+
+### Online Gradio Demo
+
+We developed an online gradio demo on Huggingface Space. You can input **"Period-Composer-Instrumentation"** as the prompt to have NotaGen generate music！
+
+<p align="center">
+  <img src="gradio/illustration.png" alt="NotaGen Gradio Demo">
+</p>
 
 ### Local Gradio Demo
 
