@@ -80,7 +80,7 @@ If you want to add a new composer style to NotaGen-X, please refer to issue [#18
 
 ### Online Gradio Demo
 
-We developed an online gradio demo on Huggingface Space for NotaGen-X. You can input **"Period-Composer-Instrumentation"** as the prompt to have NotaGen generate music, preview the audio / pdf scores, and download them :D
+We developed an [online gradio demo](https://huggingface.co/spaces/ElectricAlexis/NotaGen) on Huggingface Space for NotaGen-X. You can input **"Period-Composer-Instrumentation"** as the prompt to have NotaGen generate music, preview the audio / pdf scores, and download them :D
 
 <p align="center">
   <img src="gradio/illustration_online.png" alt="NotaGen Gradio Demo">
