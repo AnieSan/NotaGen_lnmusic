@@ -1,0 +1,221 @@
+%%score ( 1 2 3 4 )
+L:1/8
+Q:1/4=120
+M:4/4
+K:none
+V:1 treble nm="Electric Piano" snm="E.Pno"
+V:2 treble 
+V:3 treble 
+V:4 treble 
+[V:1]z7 A,,,-|
+[V:1](3:2:2A,,,/ z z/ A,,,2- A,,,/ (3:2:1z2 A,,, (3:2:1z A,,,/ z/|
+[V:1]z2 z/ A,,, (12:11:1z2 F,/ (3z A,,, z (3:2:1z/4|
+[V:1]z4 z/ (3:2:2A,,, z A,,, z/ A,,,/-|
+[V:1]A,,,/ z4 z/ [Ee]/ z/ [eE]/ z/ [Ee]/ z/|
+[V:1][eE]/(3:2:2[Ee] z/4 E3/2 (3z/4 E/- E8-|[V:2]z (3:2:2e z/ e/ z/ (3:2:5e z/ eee e2-|[V:3]z3/2 e/ z3/2 (3:2:2e z2 z2 z/|
+[V:1]E3 [eg] [Aa]/ z/ (3:2:4[Aa] z [Aa] z/ a/-|[V:2]z7/2 (3:2:2^G z2 [Aa]/ z [aA]/ z/|
+[V:1](3:2:1[aAa]/4 [Aa]/3 z/ [aA]/ a2 z (3:2:4A z/ a z2 z/|[V:2]z3/2 (3:2:2A z [Aa] (3:2:1z a (12:7:1z4|[V:3]z2 A z2 A3-|
+[V:1](6:5:1[AA]2 (3:2:1A7/4 z/ A,2- A,/ (3z/4 A,/- A,2-|[V:2](3:2:1z4 A (6:5:1z A/(3:2:2A z2 z|[V:3]z7/2 A/ z3/2 A2- A/-|
+[V:1](3:2:1[A,AA]4 A/ x5/6 z2 z/ A z/|[V:2](3:2:2z2 A z/ [A,A]4 z/ A,,-|
+[V:1]A,,/ A,2 (3:2:8z/4 a/-a/4 z/ f- f2 a z/ a z/|[V:2]z3/2 (3:2:2A,, z2 z/ F z (3:2:1A2 [Aa]/ (3:2:1z/4|
+[V:1][eE] z [Ee]F/[Ff]/ (3:2:1[Aa]2 A (3:2:4z/4 [AA,]/-[AA,]/ z|[V:2]z/ [eE,E] z4 a2 z/|[V:3]z7 A|
+[V:1]z/ f z [FE] (3:2:2[Ee]2 z [eDd]/ z/ e3/2-|[V:2]z3 f (3:2:1z [ACc] z [Cc] (3:2:1z/|
+[V:1]e/ (3:2:2B z/ [A,A] A,2 (3:2:2A z A z|[V:2]z (3:2:1A z A (3:2:1z2 A/ (12:7:2z2 A2-|[V:3]z7/2 A z7/2|
+[V:1](6:5:1[AA,A,]2 A,10/3 a/(3a z2 a-|[V:2]z3/2 A z/ (3:2:2A2 z2 [Ff]2|
+[V:1](3:2:1a/ x/6 [Aa](3:2:2[Aa] z/ E z (3:2:2E2 z/4 [Ff] z/ A/-|[V:2](3:2:1z2 a/ (3:2:5z/4 e/-e/4 z [EeE,] z/ (3:2:2e z2 a3/2-|[V:3]z4 z [efF]/ (12:7:1z2 A/ (6:5:1z|
+[V:1](3:2:1[AAA,a]/4 [AA,aa]5/6[Aa] z/ [Ff] (12:7:1z2 [Ef]3/2 (3:2:1z2 A/-|[V:2](12:7:1z8 F (3:2:1z/ [eAd]/ z3/2|[V:3]z4 z3/2 (3:2:2e z2 z/|
+[V:1][AdeC]C/6 (3:2:2z/ B z/ A2 (3:2:4AA A-A/A-|[V:2]z2 (3:2:5B z A,- A, z4|
+[V:1](3:2:1[AA]/ A7/6A3/2 (6:5:4[A,A]4 z/ a[Ff]|[V:2]z7 A|
+[V:1]z (3:2:2A2 z/ e (6:5:1z D2 z [eE]/-|[V:2]z3/2 (3:2:2[Ee]2 z [Dd] (3z/4 d/-d/d (6:5:1z2|[V:3]z6 [AD,] z|[V:4]z6 [Dd]3/2 z/|
+[V:1](6:5:1[eEDde] [Dde]5/6 (3z/ E-E/ z c[Dd] E[Fe]|[V:2]z2 e2 z4|[V:3]z2 d z4 z|[V:4](3z4 [fF] z8|
+[V:1](3:2:2c2 z B3/2 z A,2 (3:2:4z/4 A/-A/[AB]|[V:2]z [ec] z (3:2:2[B,B] z A z/ (3:2:2A z2|[V:3](3:2:1z8 A (6:5:1z2|
+[V:1]z/ A z A2 [A,A]2 z/ a|[V:2](3z2 A2 z2 z4|
+[V:1](3:2:4[aA] f2- f z [Ee]/ z/ (3:2:4e z2 z/4 D2-|[V:2](3:2:1z F (6:5:1z [fF]/ (6:5:1z2 [Dd]3/2 z/ (3:2:2A z|
+[V:1](3:2:1D/4 x/3 (3:2:2B z/ A,2 z3/2 [B,B] z [AA,]-|[V:2]z A [FA] A2 z3|
+[V:1][AA,]/ (3:2:2A z A3/2 z/ [Dd] z (3:2:2[fe]2 z|[V:2]z (3:2:1B,4 z [DEe] (3:2:1z2 [AD]|[V:3]z B (3:2:2z2 D z3 [aD]|[V:4](6:5:1z4 B2- B/ (24:13:1z4|
+[V:1]A[fF] z [FfE] (3ee z z/ d3/2-|[V:2]z/ [aA]/ z4 [Dd]3/2 z/ A|
+[V:1][dB,B]/ [B,B]/ z A (3z/ A- A z/ (3:2:1[DA] z [D,Dd]/ z/|[V:2](3:2:1z [BA] (3z/ A,-A, z B,d3/2 z|[V:3](12:7:1z8 B (12:7:1z4|
+[V:1](3[dD][dD][dD] [dD]/(3:2:2d z [Dd](3:2:2[dA] z/ [DAD,]2|[V:2]z3 [Dd]/ z2 (3:2:2d z/ dd/-|
+[V:1](6:5:1[dDc] (3:2:2[Dc]/ z/ c (3:2:8z/4 [cD]/-[cD] z/ D-D[DE] z C-|[V:2]z D D z (3:2:1de/ (3:2:4z/4 e/-e z ^A/c/-|[V:3](12:7:2z8 E2 e z|
+[V:1]C/ (6:5:1[cc](3:2:1c cc/ z/ (3:2:1[cC]2 C (3:2:6z/4 [C^g]/-[Cg]/ z/4 c/-c/-|[V:2](12:7:2z8 c c2 (3:2:1C-|
+[V:1](6:5:2c [Cc]2 x5/6 A3/2 (3:2:4z/4 [A,A]/-[A,A] z D3/2|[V:2]z3/2 [AA,]2 (3:2:2C z2 [cA]3/2 z|[V:3]z4 z3/2 D/ z2|
+[V:1]E2 [eE]3/2(3:2:2E z/ [aA] z/ (3[A,A] z b-|[V:2]e (3:2:2A2 z/ [Gg] (3:2:1z/ A/ (6:5:2z [aA] z2|
+[V:1](3:2:1[bGg]/ [Gg]/6 z/ [Gg]/ z/ (3:2:2A z A3/2 (3:2:4z/ [Ga] [fEe]2 z/4 [eE]/-|[V:2]z7/2 b/ (3:2:2[fb] z2 z (3:2:2E z/|
+[V:1][eE]/ dd (3:2:2[Dd] z d(3d z/ d[dD] (3:2:1z/|[V:2]z3 [Dd]/ z D2- D/ z/ D/-|[V:3]z4 z3/2 (3:2:2d z2 d/|
+[V:1][Dd] d z (3:2:2d' z/ d'/ z/ d'3/2 z/ [fFA]/ z/|[V:2]z [D,D]2 z/ d'/ z (3:2:2b z2 z|[V:3]z A z7/2 [baA] z3/2|
+[V:1][Aa]/(3:2:2[Aa] z/4 [Ee]3/2 (3z/4 e/-e [aE]/ z/ [baA]/ z/ (3B z [Bb]|[V:2]z3 (3:2:4E2 z4 [bB] z|
+[V:1]b3/2 z/ g z/ A (3:2:4[Aa] z/ [fc'']2 z [F,ab]/-|[V:2]A/ z/ A/ z7/2 (3:2:2[Aa] z [Fa] z/|[V:3](3:2:1z2 G2- G/ (6:5:1z2 F z3/2|
+[V:1][F,ab]/ (3:2:2b z a3/2 z/ (3:2:1[Aa][aA] (3:2:2z/ [Aa][Aa]/ (3:2:1z/ [aA]/-|[V:2](3:2:5z d'2 z A[Aa] z3/2 [Aa]/ z2|
+[V:1](3:2:1[aAa]/4 (3:2:1a7/4 a (3z [AA,]2 z/ a/ (3:2:6z/ a z/ [fF]-[fF] z/4|[V:2](3:2:4A4 z4 [aA] z a/-|[V:3]z2 (3:2:2a4 z4|
+[V:1](3:2:1[aA]/4 A5/6 (3z/ [Fe]- [Fe] D2 C (3z/ c-c/ z|[V:2](3:2:1z [fE] (3:2:2z/ Ed/ (3:2:5z/ d- d2 z2 [dD]2-|[V:3](3z F z z6|
+[V:1](3:2:1[dD]/4 x/3 (3:2:2d z [Ee]F3/2 z/ [Ee] E[fF]/ z/|[V:2]z [dE] z/ (3:2:2d z a z3|[V:3]z3 f z4|
+[V:1][Ee]/ z/ [fF] a2 (3z2 [Fe] z [Ff] (3:2:1z/|[V:2]z2 z/ A z4 [Ee]/-|[V:3](6:5:1z4 [Ee]2 (3:2:1z4|
+[V:1](3:2:1[Ee]/4 x/ (3:2:6[Ee][eE]- [eE]/ z/4 E/- E2 E2 a[aA]|[V:2]z2 z/ (3e z2 z e/ (24:13:1z4|[V:3]z3 (3:2:2e2 z4 z|
+[V:1](3:2:9a z2 [fF] z [Ee]- [Ee]/ z/4 D/- D2 z/ [Cc] z/|[V:2][Ff] z7/2 d/ z/ d (6:5:2z c-|
+[V:1](3:2:1c/ x/6 (3:2:2D z/ d/ [dE] z/ (3:2:1E z/ F3/2 (3z/ E-E/E/-|[V:2]z/ c (24:23:1z4 f (3z/4 e/- e2-|[V:3]z D z6|
+[V:1](3:2:1E/4 e/ [Ff] z [fFe]/ (3:2:5z/ A- A2 z2 F2-|[V:2]z3/2 (3:2:2[Ee] z2 a/ z/ a (12:7:1z2 f (3:2:1z/|[V:3](12:7:1z8 [Ee]2 (3:2:1z2|
+[V:1](3:2:1[Fa]/4 a/3 z/ (3:2:1f z C2 B (6:5:3z B z/ c/|[V:2]z3/2 (3:2:6F z2 e4 z [CB] z/|[V:3]z3/2 e2 z/ (3:2:2c z B z3/2|
+[V:1]z/ (3c z [B,B]B (3:2:5z/ [B,B]B B2- B2-|[V:2]z B z3/2 (3:2:1B z/ B,3 (3:2:1z/|
+[V:1](6:5:1[Bf] (3:2:2f/ z/4 [fe]3/2 z/ [fc] (3z/4 f/- f2 B/ z/ (3:2:2B z/|[V:2](3z4 [fe] z C/ (3:2:4z/4 C/-C z2 [B,B]/-|[V:3]z4 z3/2 (3:2:2B z2 z/|
+[V:1][B,B] C/ (3:2:2B2 z A,3/2 z G2|[V:2](3:2:1z4 c z A (3z2 g z/|[V:3]z7/2 (3:2:2[AB] z2 z2 [gG]/-|
+[V:1](6:5:1[gGA] (3:2:1A7/4 A z/ [FB] (6:5:5z d2 z/ A z/|[V:2]z3/2 F2 z2 z/ A/ z A/-|
+[V:1]A/ x/ A B2 B d2- d/ z/|[V:2]z3 (3:2:5A2 z2 [aA] z A|
+[V:1](3:2:1AA/ (3z/ A z [Aa]/A/ z/ (3:2:2A z/ A/ z/ (3:2:2[A,A] z|[V:2]z2 A z2 A/ (12:7:2z2 A,2-|[V:3]z7 A|
+[V:1](12:7:1[A,A-A^g]8 x2/3 [bB^d'']2 (3z/4 d/-d/4-|[V:2](3:2:1z2 a (3:2:7z/4 [^g^d'']/-[gd'']/4 z/ A- A2 z A,/ z/ (3:2:2B z/|
+[V:1][dAFBFA]6 [FA]/ z/ [Bd]-|[V:2](3:2:1z4 F (3z/ A-A z/ (3:2:2[Bd]2 z|
+[V:1](3:2:1[Bd]/ x/3 d (3z/ d z2 d/ (3:2:2d2 z/4 d2-|[V:2]z2 z/ [dc'] (12:7:1z2 B2 (3z/ [Aa]-[Aa]/|[V:3]z4 z3/2 (3:2:2d z2 z/|
+[V:1][d-AFf]2 [Ffd]/ z3/2 c/ z/ [Bc] [cB]B|[V:2]z/ A/ z4 z2 z/ A/|
+[V:1]z/ A2 (3:2:6F z/4 F FF F4-|[V:2]z F (3:2:2[fF] z2 z2 [Aa]>B-|
+[V:1](3:2:1F/ [BFd]3/2 (3:2:4d15/2 z/4 [FA] z/|[V:2]z2 c'/ z3/2 (3:2:2D z/ B/ z/ (3:2:2A2 z|[V:3]z4 (3:2:2F2 z2 d-|
+[V:1][dA] A/ z/ d d2 [cc']/ z/ BB|[V:2]z B2 z/ (3:2:2d' z2 z2 z/|[V:3](3:2:1z2 d/ (48:37:1z8|
+[V:1]z/ (3[AB] z/4 [aA] z/ F2 (3:2:2F, z/ [Aa]/ z/ (3[Ee] z/4 E|[V:2](3:2:1z A (6:5:5z [fA]2 z F2 z4|[V:3](6:5:1z4 f2- f/ (24:13:1z4|
+[V:1](3:2:4E z [Ed] z/ [Ff]2 [Ee]3/2 z/ FE/-|[V:2]z/ [Ec] z/ a3/2 z2 [Ee]/ z/ f3/2-|[V:3]z15/2 e/-|
+[V:1](3:2:1E/4 [fFAa] [FAae]/3 [eAaBB,]7/6 (3[BB,]3/4 z/4 [bB] z/ [d'B,](3:2:1[Dd] z/ (3:2:2[Ee][eE,EB]|[V:2]z7/2 [B,B] z3 [dEe]/-|
+[V:1][dEe]/ x/ (3:2:6[f'aE] z/ e D2- D [Ee]2 z/ [f'Cc][Cec']/-|[V:2]z3/2 e/ (3:2:1z [d'A] (12:11:1z2 [Ffe]/ z2|[V:3]z3/2 (3:2:2[Fd]2 z [AD,]/ z4|
+[V:1](3:2:1[Cec']/4 x/ (3:2:2f z [DB]/ z/ [dA]/ z/ [A,A] z/ A z/ (3:2:2a z/|[V:2]z B (3:2:1z4 [A,A]/ (6:5:1z [A,A]/ (6:5:2z A-|
+[V:1](3:2:1[AA,A]2 (3:2:5A/ z/ A2 z4 z [Af] (3:2:1z/|[V:2](3:2:1z2 A,2 (12:11:1z4 [af]|[V:3]z3 A7/2 (6:5:2z F|[V:4]z3 A,3 z2|
+[V:1]z/ aF3/2 e/ z/ (3:2:5aa[AA,] A [Aa]2-|[V:2]z3/2 f/ z/ e/ (3z/ [Dd]- [Dd] z2 z/ (3:2:1[dD]-|[V:3](6:5:1z4 A (12:11:1z4|
+[V:1](3:2:2[Aa] [dDaFf](3:2:7[Ff]3/4 [adF] z [aA]- [aA]2 z/4 [Ad]/-[Ad] (3:2:1z [bB]/-|[V:2]z4 [df]/ z7/2|
+[V:1][bBbB] [bB]/6 (6:5:7z B2 z/4 b/- b2 A2 z2|[V:2]z2 b/b/b/ z/ (3a z2 z [aA] (3:2:1z/|[V:3]z4 A3/2 z2 z/|
+[V:1]z/ (3:2:2[bBc'] z/ b b (3b4 z2 [AaF]-|[V:2]z b/ z/ B3/2 z/ [aA]3/2 z/ A3/2 z/|[V:3]z B z6|
+[V:1](3:2:1[AaFf]/ f2/3A f e2 a/ z/ (3[AA,][Aa][Aa]-|[V:2](3z2 a2 z2 D3/2 z2 z/|[V:3]z2 z/ (3:2:4F2 z/4 d z2 z2|[V:4]z4 z/ a/ z3|
+[V:1](3:2:1[AaD]/ D7/6(3:2:1[ad] z/ (3:2:4[faF] z A- A2 A(3:2:2A z/|[V:2]d2 [Fdf] z a7/2 z/|[V:3](3:2:1z a/ (48:37:1z8 [ab]/ (3:2:1z/4|
+[V:1]z/ (3:2:2b z/4 a z [aA] (6:5:5z2 E,2 z/4 [eaf]/-[eaf]/4-|[V:2]z2 (3:2:2f2 z [Ed]3/2 z/ [Ee]/ z/ (3:2:2a z/|[V:3]z4 e/ z7/2|
+[V:1](3:2:1[eafFf]/4 [Ff]5/6[Ef]/ z/ F3/2 z/ E2 z/ (3:2:2e z/ E/-|[V:2]z2 (3:2:8ff[fA]- [fA]/ z/ e-e/ z2 [eb]|[V:3]z4 (3:2:4e z e z2 z/|[V:4]z4 z3/2 (3:2:2[EE,]2 z2|
+[V:1][Eaeg'g]3/2[g'g]/6 (3:2:7z/ F-F[Ae] E2- E z2 E/ (3:2:1z/4|[V:2]z [eg] z2 z/ e3/2 z3/2 e'/-|[V:3]z4 z3/2 (3:2:2[Ee'E,]2 z [Ee]/-|
+[V:1][e'e'Ee]3/2 (3:2:12[e'EeEe]3/4 z [Eee'][e'B,f]- [e'B,f]/ z [Bb] z z/4 [bB] z/4 [bB,B]-|[V:2]z4 B z/ (3:2:2B2 z2|[V:3]z4 z3/2 B,2 z/|
+[V:1](3:2:1[bB,B] (3:2:2[bB] z [B,B] z/ [A,A] (3a z/4 A z b/ z/|[V:2](3:2:1z4 [Bb]/ (48:29:1z8|
+[V:1](3:2:1A[gg'B]/ (3:2:2z/ [Bf] z/ (3:2:6[Aa] z [Ee]-[Ee]/ z/ e e z|[V:2]z2 A,3/2 (12:7:3z2 e z2 e (3:2:1z/|
+[V:1](3:2:1e2 [aEe] (3z a2- a2 [Ee][Ee]|[V:2]E2 f/ z/ [Ef]/ z/ e/(3:2:2e z/4 [Ee] (6:5:1z2|[V:3]z (3:2:2e z2 z (3:2:2E2 z4|
+[V:1][EE,] z/ (3:2:2[ea] z/ F3/2 D2 [AD]f/ z/|[V:2](3:2:1ee/ (6:5:1z f (3:2:1z/ e/ (3:2:4z d2- d2 z/ [Dcf]/ (3:2:1z/4|[V:3]z7/2 e/ z4|
+[V:1]z/ (3:2:5B2 z/4 [B,DB] z [Dd] [DeE][eE]/(3:2:2e z [aef]/ z/|[V:2]z/ (3:2:4B, z/ B z2 z/ d/ z3/2 [FEe]/ z3/2|[V:3]z (3:2:2[B,AD,] z2 z4 z|
+[V:1][fE]3/2 z/ (3:2:2[fF] z/ [eE] D2- D/ d/c|[V:2]da z/ (3:2:2e z d/ z/ d (3:2:2[dD,] z2|[V:3]z6 A3/2 z/|
+[V:1]f[B,AB] [B,B]d3/2 (3:2:6z/4 D/-D/4 z/ [EF]- [EF]/ z/ (3:2:2[Ee] z/|[V:2]z/ (3:2:2B z2 z/ D [eA]3/2 z/ A(3:2:2[AE] z/|[V:3]z7/2 B2 z/ f2-|[V:4]z4 [EA]3/2 z2 z/|
+[V:1]f/ (3:2:2[Ee] z [Ee] z/ [Ee]/ z/ (3:2:2e z2 z3/2|[V:2]z [Ee]/ (12:7:1z2 [eE]/ (3:2:1z2 [E,E]3/2 z2|[V:3]z4 z e z2|
+[V:1](3:2:2B z [F,FAf]/ z/ A, z [Cc]2 (3:2:2B, z|[V:2]z/ A z A3/2 z2 c'<C|[V:3](6:5:1z4 [B,B] (12:11:1z4|
+[V:1]c/[ce](3:2:2[Ee] z2 [Ee] (3z/4 C/-C c'2 z/|[V:2]z (3:2:4E z/ [eE] z F c2 [eE] z/|[V:3](3:2:5z8 C2 z/ e-e/-|
+[V:1]e/ ce (3:2:2[CcB] z/4 B (3z/4 A,/- A,4 B/-|[V:2]z4 z/ A3/2 A3/2 z/|[V:3]z4 z2 z/ (3:2:2B, z|[V:4]z4 z2 z/ (3:2:2B2 z/4|
+[V:1]B/ D2 A/ z3/2 F3/2 F2|[V:2]z/ (3:2:2d2 z D, z3/2 F, f z|[V:3]z4 z2 z/ E,3/2|
+[V:1](3:2:1f[AF,] (6:5:1z [AA,][A,A]/ (3z [BB,]2 z [Aa] (3:2:1z/|[V:2]z/ (3:2:2F z/4 f2 (24:13:3z4 [db] z2 b/-|[V:3]z3/2 A z4 z3/2|
+[V:1](3:2:1[bB]/4 B5/6 z/ [Cc] d'(3:2:1d' z/ A3/2 z/ [G,G]/ (3:2:1z/ [A,A]/-|[V:2](3:2:1z [Dd] z [B,Bd] (3:2:5z/ [Dd]-[Dd] z/4 [B,B]/-[B,B] (12:7:1z2|[V:3](12:7:1z8 e/ (24:17:1z4|
+[V:1](3:2:1[A,A]/4 x/ [FF,] z A, (6:5:6z A z [Ee] z [Ee]|[V:2]z3/2 (3:2:2[Ff]2 z/4 A3/2 z/ [Ee] z/ (3:2:2[Ee] z|
+[V:1](3:2:5[Ee] z/ [eE]2 z4 z/ E,3/2 (12:7:1z2|[V:2]z/ (3:2:4[Ee] z [eE]4 z2 e3/2 z/|
+[V:1](3:2:1z a/ (3z/ [fF]- [fF]2 [Fa]/ z/ [aA] E2 [EGf]/-|[V:2]z2 a3/2 z2 e [Ae] z/|
+[V:1](3:2:1[EGf]/4 x/ [Eg]/ (3:2:5z/ [Dd]- [Dd]/[Dd] z De C3/2 z/|[V:2]z3 [Dd]/ (12:7:1z2 A3/2 (12:11:1z2|[V:3]z4 z3/2 [c^g]/ z2|
+[V:1][A,A]A (3:2:1z [A,A]/ (3:2:2z/ [AC] z/ (3:2:4[Dd]d E-E z/|[V:2]e/ z (3:2:2[CcA]2 z4 z/ e[eE]/ z/|
+[V:1][Gg]2 d>d [Dd]3/2(3:2:2[Dd] z2 z/|[V:2]z6 [Dd]2|
+[V:1](3:2:2[dd']2 d' [d'a] z/ b/ z/ [Aa][Aa]/ z/ (3:2:2[Ff] z|[V:2]z2 z/ [bAa] z3/2 (3:2:4[Aa] z2 [fF] z/|
+[V:1]z/ (3:2:2[Ff] z [fF] z/ (3:2:2[Ff] z/ [FAa]a/ a z|[V:2]z [fF] z/ [fF] z/ (3:2:2f z2 z/ B3/2-|
+[V:1]B/ (3:2:2[aA] z/4 [Aa] (3z/4 b/-b z (3B z/4 d z/ [Aa]3/2-|[V:2]z2 z/ B2 (6:5:1z d'3/2 (3:2:1z A/-|[V:3](6:5:2z4 A z4|
+[V:1][Aa]/ [AFf]/ [Ff]/ z/ [bFaA][FAf] (3a z [Bb] z/ (3:2:1[bd']2-|[V:2]z [Ff]/ z2 z/ [ABb] z (3[bd'] z d-|
+[V:1](3:2:1[bd'dd']/4 [dd'd]5/6 z d2 [e'c'][c'c]/ z/ B2|[V:2](3:2:7z [dd'] z d'2 z2 c z ab|[V:3]z3 [f'd'] z4|
+[V:1](3:2:2B2 c' [bAB]c' (3:2:2B z2 [AfF]/ z/ f|[V:2]z2 z/ b/ z3/2 (3:2:2[bAa] z2 z3/2|
+[V:1][fF] z/ (3[Bb]2 z [bB] z/ [d'd]/ (3:2:5z/ a z [Aa] z/|[V:2](3:2:1z [aA] z [Aa]/ (24:13:1z8 [Aa]/|
+[V:1]z/ (3:2:6[Aa] z/4 [Aa] [aA] z z/4 A2 z/ A2-|[V:2]z2 z/ [aA] a7/2 z|[V:3]z6 A,2|
+[V:1](3:2:1A x5/6 [aA] z/ (3:2:2E z/ [B,B] (3:2:2z/ B [A,A][A,A]|[V:2]z2 c2 (3:2:5z [Bd] z d2 z|[V:3]z3 e2 z3|
+[V:1][F,B]A, [Dd]4 D,2-|[V:2]z6 (3:2:2[dA] z2|
+[V:1][D,D]3/2 x e2 ef/ z/ A3/2-|[V:2]z/ d2 (3:2:2E2 z4 z3/2|
+[V:1]A/ (3:2:2[Aa]2 z/4 [Dc]2 (3:2:2d z/ d3/2 [eE] z/|[V:2]z (3:2:2[Aa] z A z [DAD,]3/2 z [eE]|[V:3]z3/2 b z3 D/ z2|
+[V:1][eE]2 (3:2:6z [Bb]2- [Bb]/4 z/ [aBd] z/ [Bd']/ z/ (3:2:2[Aa] z|[V:2]z A z2 z/ d'3/2 z [Aa]|[V:3]z3/2 (3:2:2a z2 z4 z/|
+[V:1]z/ [A,A] z/ (3:2:2A e2 E[Eea] [efF][Ff]/ z/|[V:2](3:2:2z2 A [fE] (3:2:4z/ [Ef]- [Ef]/ z4|[V:3]z4 d3/2 z2 z/|
+[V:1][Ff][aA] b[Aa] [Bb][dd'] z/ (3:2:2a z|[V:2]z4 z3/2 [aA]/ z/ (3:2:2A2 z/4|[V:3]z7 a/ z/|
+[V:1](3:2:2[Aa] z [EAea] F(3:2:1G z/ a (6:5:1z F[Ff]/|[V:2]z2 z/ f3/2 z3/2 [fF]/ z2|
+[V:1]z/ (3:2:6[Aa]2 z [cEe] z/4 [BB,]2 z [AA,]/ (3:2:1z [A,A] z/|[V:2]z3/2 c z2 (3d4 z/4 B-|[V:3]z4 z/ B z2 z/|
+[V:1](12:11:1[BA,AD]2 (3:2:2D15/2 z A/-|[V:2](3:2:2z2 A z d/ z/ d3/2 (3:2:2d2 z2|[V:3]z3/2 d3/2 z3 D,2-|[V:4]z6 A2|
+[V:1]A/ D,/ x/ (3[Ee]2 z [E,e] z/ [f'f]/ (3:2:5z/ A- A[Aa] z/|[V:2](3:2:1z4 e/ (24:13:1z8 [A,a]/-|[V:3]z15/2 [Aa]/-|
+[V:1][A,a]/ [Aa]/ (3:2:2[bA] z2 z/ [DAd] [dD]/ z/ [Ee]2 [E,B]/|[V:2]z3/2 (3:2:2[AdD] z2 z4 E/-|
+[V:1][Eef] [ef]/c/ (3:2:1cc/ (3z/ E- E2 F2 C/-|[V:2]z2 E3/2(3e z2 z2 f (3:2:1z/|[V:3]z4 e z2 z/ c/|
+[V:1][Cc]3/2 [Ee] e/(3:2:2e z/ e/[Ee] z E,3/2-|[V:2]z2 z/ E(3[Ee] z2 E4-|
+[V:1](12:7:1[E,E]2 [EE]5/6 (3:2:1[fF]f/ (6:5:1z [fF]/ z/ (3:2:2F4 z/|[V:2]z3/2 f/ z [Ff]/ z3/2 (3:2:4f z/ B,2 z/4 [fF]/-|[V:3]z4 z3/2 (3:2:4B z/ B z|[V:4]z7 (3:2:2B z/|
+[V:1](6:5:1[fFfF] [fF]/3 (3:2:1z/ [BB,f]/ z/ (3:2:2[Bf] z/4 [Cc] (3:2:5z/4 c/-c z2 E-|[V:2]z3 (3:2:5[B^g] z2 z/ [EeB]2 z2|
+[V:1](3:2:1[Ea]2 x2/3 [Aba]/ z/ [AfF] A3/2 z/ (3:2:2e z/ E-|[V:2]z [Bb]/ z2 z/ a E2 [fA]/ z/|[V:3]z4 z e/ z e/ z|
+[V:1][EFa]/ (3[Fa]/4E z/4 B/ z/ (3:2:6[Bb] z/4 b [Ab]G-G z/ (3:2:1A2-|[V:2]z (3:2:2[aA] z2 B3/2 z (3:2:2g z2 z/|
+[V:1](3:2:1[AaA]/4 [aA]5/6 (3:2:7z/ [fa]- [fa]/ z/4 [baF,]/-[baF,][d'b] z/ (3:2:1a2 [aA]/ z/ (3:2:2[aA] z/|[V:2](3:2:6z F2- F/4 z4 A z2 [Aa]/-|[V:3](3z f z z6|
+[V:1][Aa]/ (3[Aa] z/4 [aA] z/ A2- A/ (3:2:2[AA,]2 z/ [Aa] (3:2:1z/|[V:2]z (3:2:1A z a (3z/ a-a/ z3|
+[V:1](3:2:1a[Ff]/ (3:2:1z/ [FaA]/ z/ [aFAf] z/ [Ee] (3:2:4z/ D- D z c/ (3:2:1z/4|[V:2]z/ (3:2:5[Aa]2 z4 z/4 [AD] z2 [cC]c/-|[V:3](12:7:1z8 d3/2 (12:11:1z2|
+[V:1]c/ (3:2:4d z/ c z/ [Ed][Ee] (3:2:2[de] z/ [fE]/ z/ e/(3:2:2[Ee] z/|[V:2](3:2:2z D2 c' z3/2 (3:2:2[Ff']2 z2 [Ee]/-|[V:3]z2 D z4 z|
+[V:1][Ee]/ (3:2:2a2 z [FAf]a E2 [Fe][fF]/|[V:2]z/ F2 (6:5:1z A3/2 (3:2:1z e' f/ z|[V:3](3:2:1z2 [Ea]/ (3:2:1z4 e/ z3|[V:4](3:2:1z2 e3/2 (48:31:1z8|
+[V:1]z/ (3:2:5e z/4 e e z/ [eE]3/2 [eE,] z3/2 (3:2:2a z/|[V:2]z E2 (6:5:1z2 E2 (6:5:1z [aA]/-|[V:3]z2 z/ (3:2:2[eE] z2 z7/2|
+[V:1](3:2:1[aAaFf]/4 [aFf]/3 z A/ z/ (3:2:2F z/4 [Ee] (3z/4 D/- D2 [Cc] z/|[V:2]z4 z/ (3:2:5d z e' z c-|
+[V:1](3:2:1c/ x/6 D2 (3:2:2[dE] z/4 [Eee'] (3z/4 f/-f z/ (3:2:2E E2|[V:2]z/ d z2 z/ F3/2 (12:7:1z2 e/ (3:2:1z/ e/-|[V:3](3:2:2z8 [f'a] z2|
+[V:1](3:2:1[eFf]/4 [Ff]/3 z/ (3:2:2[eE] z2 a E2 [fF]/ z/ [fA]/ z/|[V:2]z3/2 (3:2:2[eFf] z A3/2 d'/e' z2|
+[V:1]f[Ee] ce B,3/2[Bc] (3:2:4z/4 B/-B/4 z/ c/-|[V:2]z/ F/ z C2 (3:2:2[Bf] z2 C3/2 z/|[V:3]z4 z/ [eB] z2 z/|
+[V:1](3:2:1[cB,B]/4 [B,B]/3 z/ (3:2:2[B,B] z/ [B,Bf][B,f] (3:2:4B z/ B4 z/|[V:2]z3/2 (3:2:2B z B/ z B,7/2-|[V:3]z4 z/ (3:2:2B z2 z f/|
+[V:1][B,f]/ f3/2 z/ [cf] (12:7:3z2 B[Bb] [BB,] z/ c/-|[V:2]z/ e2 (6:5:2z [cfc'C] z4|[V:3]z/ c'[Ef]/ z6|
+[V:1](3:2:1[cB]/4 B5/6c/c/ [BA,A][AB]/ z/ G(3:2:2G z2 z/ A/-|[V:2]z4 z g2 z|[V:3]z4 z3/2 G3/2 z|
+[V:1](6:5:1[AF] F2/3 z/ F2 (3:2:1[aG]A (6:5:6z [aA] z/4 [Aa]/-[Aa]/4 z/4|[V:2]z f/ z/ (3:2:7B z d- d2 z/4 [aA]/-[aA]/4 z2|[V:3](6:5:1z4 d' (12:11:1z4|
+[V:1]F/ z/ (3:2:2[aA] z/ B d2 (3:2:7z/ A- A/ z/4 A/-A/ z|[V:2]B[BA]/ z2 z/ (3aA z z A|
+[V:1](3:2:2A z A AA A/ A,3-|[V:2]z/ A z7/2 A3-|[V:3](12:11:2z8 a|
+[V:1]A/ [A,-^ga]2 [aA,]/ [bB]2 (3:2:2z/ d d2-|[V:2]z A2 (12:7:1z4 c'3/2 (3:2:1z F/-|
+[V:1](3:2:1[dd'Ad'A]2[d'AF]2/3 [FFAd']5/6 (3:2:2[FAd']/ z/4 A2 (3:2:5z d[dd']-[dd']/ z/|[V:2](3:2:2z2 d4- d2 z2|[V:3]z4 z/ B3/2 z2|
+[V:1](3d z [dBD] B3/2A (3:2:2A z/ F2- F/-|[V:2]z/ (3:2:2[c'c] z d z2 (3:2:4A z/ d2 f-|
+[V:1](24:17:1[FcfcF]4 [cFf]5/6 (3:2:1[fF]3/4 (3:2:1F3/4 A2 (3z/ F z/|[V:2]z3/2 (3:2:1B2 z/ [AB] (3:2:4z/ F-F z2 F/|[V:3]z4 f3 z|[V:4]z6 F/ z3/2|
+[V:1]z/ (3:2:2F z [Aa]3/2 z/ (3:2:4B z B z2 z/|[V:2]z F (3:2:6F F2- F2 z d2- d-|[V:3](6:5:2z4 a b2 c'3/2 z/|[V:4]z4 z/ B z2 z/|
+[V:1](3:2:1[dAd']2 d'5/3 [FA] AA (3:2:2d2 d-|[V:2]z [Bd]/ z/ [Ad]3/2 (3:2:2d4 z2 d'/-|[V:3](3z8 B2 z2|
+[V:1](3:2:1[dc]/ (3:2:1[cd']3/2 c (3:2:4z B z z/ [aA]/ (3z/ A- A2|[V:2]z2 B z/ (3:2:2[BAa] z2 z/ (3:2:2[fF]2 F-|[V:3](12:11:2z8 f-|
+[V:1](3:2:1[FF]/ [Ff]7/6 (3:2:1[fA]/4(3:2:1A3/4 z/ E/ (3:2:1z/ e/ (3:2:4d z d z2 z/|[V:2]z3/2 (3:2:2[aEe] z2 E [Ed]/ z F2|[V:3]z6 f2-|
+[V:1][fEf]/ [Ef]/[aE] [fF][eEFa] (3:2:1[FAf][aA] (3:2:4z/ [bB] z B,|[V:2]z3/2 [aF] z4 [B,B][Bd'B,]/-|
+[V:1](3:2:1[Bd'B,]/4 x/ [dD]/ (3:2:1z/ [DeE]/ z/ (3:2:2[eB] z [Ef'a]/ z/ (3:2:1[dF] z (3:2:1[D,DA]2|[V:2]z3 [de]/ z2 (3:2:2[Dd] z2 z/|
+[V:1][Ec']/[c'Fe]/ z/ c/ (3:2:1c[ec]/ (3:2:8z/ [Bd']- [Bd']/ z B [A^g] z [A,A]|[V:2]z3/2 C z [B,d'] z2 (3:2:2[A,A] z|
+[V:1](3:2:1AA/ (3:2:5z/ A- A/A z A,4-|[V:2]z/ A,2 z/ A7/2 z3/2|
+[V:1]A,3/2 x/ [aAf] (3:2:4z/ [ab] A z [eF]/ (3z/4 D/- D2 a/|[V:2]z2 z/ F z (3:2:2[fF] z2 z/ d|
+[V:1]z/ (3:2:6A z/ A2 z a z [fF]/ z/ [Aa]2|[V:2]z (3:2:4[Aa] z d2 z/4 [fF] z3|[V:3]z3/2 [aD]3/2 z4 z|
+[V:1]A2- A/ b[Bb]/ [bB][Bb] (3:2:1ab (3:2:1z/|[V:2](3:2:5z d z c' z/ B/ z2 z/ A2|
+[V:1]A2 z/ (3:2:2[bB] z/ b b/[c'b] [Ab]3/2 z/|[V:2]z3 (3:2:2[bB] z/ B3/2 z/ (3:2:2a z2|
+[V:1]A3/2(3:2:1[aFf] z/ (3:2:2[ab] z/4 a (3:2:6z/4 e/-e z2 [adA] z/|[V:2](3z aA z A/ z/ (3:2:4f z [Dda]2 z A,/-|[V:3]z4 (3:2:4F2 z/4 A z2 z/|
+[V:1](3:2:1[A,A]/4 (3:2:4A3/4 A2- A/4 z [daF] z/ (3:2:2[FfA] z/4 A2 (3:2:1z|[V:2](3:2:2z2 [Dad] [adD]/ z/ [fF] z a3-|[V:3](3:2:1z8 D (3z A z/|
+[V:1](3:2:1a/ x/6 (3:2:4a z/ b z [Ff] a/(3:2:4[Aa] z e2 z/4 B/|[V:2]z b/ z/ [bAa]/ z2 z/ [dE]2 [E,Ee]|[V:3]z4 z e z2|
+[V:1]z/ (3:2:2[ae] z [Eef] z/ [fF]/ z/ A(3:2:1e z/ [eE,]/ (3z/4 e/-e/|[V:2](3:2:1z f z [fF]/ (3:2:2z2 f z3/2 (3:2:1E2-|[V:3](12:7:1z8 E2 (3:2:1z2|[V:4]z4 z (3:2:2e z2 z|
+[V:1](3:2:1[Ee] (3e z/4 [gg'] z/ F/ (3z/ E- E/ E2 [EE,][Ee']/-|[V:2]z/ (3:2:2a z2 z3/2 (3:2:2[f'e] z/ e' e'3/2 z/|[V:3](3:2:2z E2 z6|
+[V:1](3:2:1[Ee'e'E]/4 (3:2:2[e'E]7/4 [Ee'] z/ [E,Ee] z/ (3:2:4[e'f] z [Bb] z [bBB,]/ z/|[V:2]z2 z/ (3:2:2e'2 z [B,B] z/ [B,B] z|[V:3](6:5:2z4 [Ee] z4|
+[V:1][bB,] z/ (3:2:2b z [cB]/ z/ [c'B]/ z (3:2:2A2 z/4 b-|[V:2]z2 (3:2:2[cf] z2 [A,A] z A,2|[V:3]z2 [B,B] (24:13:1z8 A/ (3:2:1z/4|
+[V:1][baA]/ (3:2:5[aA]/4 z2 [ABf][A,AB] z [Ee](3:2:5[Ee] z/ ee z|[V:2]z4 z3/2 (3:2:2e z [Ee]|
+[V:1](3:2:2E2 z/4 E2 z/ E2 (3:2:2A2 z/4 E/-|[V:2]z/ (3:2:2e z [aA]/ z/ [aa'E]/ z/ [eDA]/ z/ [ee']/ z/ (3:2:1EE/ (6:5:1z|[V:3]z (3:2:2[ea] z2 z3 e2|
+[V:1](3:2:1[EF]/4 (3:2:2F7/4 z [af'][e'eF]/ z/ D2 [Af']2|[V:2](3:2:1E[eE] (3:2:4z/ [Ff]-[Ff] z d/[dd'][d'D] z/ [Dfc]/ z/|[V:3]z6 ^d z|
+[V:1]B,2 [B,B] (3:2:2z/ D z/ (3:2:6e z/ B z [fa] z/|[V:2][fB]B (3:2:1z d (3:2:4z2 [e'e] z2 [Af]-|[V:3]z7/2 (3:2:2e z2 z2 z/|[V:4]z7/2 E3/2 z3|
+[V:1](3:2:1[Af]/ x/6 a z [Ee] D2 z (3[fc] z/4 B-|[V:2](3:2:1z2 [afF] z (3:2:1d d/ (6:5:2z E z2|
+[V:1](3:2:1[BBAB,]/ [BAB,]/6 z/ [B,ABD] (3[dD]2 z A[ef] (3:2:4z/ f'-f'[Ee]|[V:2]z3 E3 z/ (3:2:2[eE] z|[V:3]z3 e3/2 (3:2:2e' z/4 F (6:5:1z2|
+[V:1](3:2:6[eE] E2- EE B2 z4 [BA]|[V:2](3:2:1z e/ (3:2:2z/ e z/ e2 (6:5:1z4|[V:3]z2 (3:2:2e z E,3/2 z3|
+[V:1](3:2:5[AFc] z [A,Aa] [B,bB] z/ [Cc] c'' C2 E|[V:2]z3/2 B z/ c'2- c'/ (12:7:3z2 [ce] z|[V:3]z2 (3:2:4A4 z/ [B,B] z2 z|[V:4]z4 z/ c z2 z/|
+[V:1](3:2:1[eE][Ef] (3:2:1z/ [Fe]/[Ec]/ C2 [eEc] e(3:2:2c z/|[V:2]z/ (3:2:2e z2 z3/2 (3:2:4c z2 z C2-|[V:3]z4 z/ c' z2 [ce]/-|
+[V:1](6:5:2[CEccB]2 [ce]/4 x5/6 [A,a]2 B, (6:5:1z B/ z|[V:2](3z2 [ec] z A/ (3:2:9z/ A- A/[AB] z/4 [A,AB] z [Dd]-[Dd]|[V:3]z3/2 (3:2:2[B,B]2 z4 z2 z/|
+[V:1](3:2:1z D, z F/ (3:2:5z/4 F/- F2 z F z/ [F,FA]/ (3:2:1z/ [AD]/-|[V:2](3:2:1z4 f2 E, (12:7:1z4|
+[V:1](3:2:1[AD]/4 x/ [A,Aa] (3:2:7z/ A-A z [Ba] z z/4 [Bb]/ z/ [Dd] z/|[V:2](3:2:2z4 [B,Bb]2 z4|
+[V:1][^dd'] z/ (3:2:6[cD] z2 [AB,] B z z/4 A3/2 (3:2:2z/ [Ff]|[V:2]z/ [B^d]B z2 G, z F,3/2|[V:3]z2 (3:2:2[dA] z2 z2 z/ (3:2:2F z|
+[V:1]f (3:2:2z/ A [Ae] (3:2:2z/ [eE] z/ (3:2:5[Ee] z [Ee][Ee][eE]-|[V:2]z/ (3:2:6[A,A] z2 z/4 [Ed] z2 z/ [eE] z2|
+[V:1](3:2:1[eE]/ x/6 ee z (3:2:2[Ee] z a aF-|[V:2](3:2:4z E2- E2 z4 f|
+[V:1][Fg](3:2:2[Faf] z/ a [eE]2 E/ z/ g>d-|[V:2]z A3/2 A z2 z/ (3g'dD-|
+[V:1][dDD]3/2 (3:2:5[DD]5/4 z/4 e z =c[A,A] (3z/ ^c z [cA,A]/-|[V:2]z3/2 [D,Ae]/ (3z [cC^g]2 z B/ (3z/ [cA]- [cA]/[CAc]/ z|[V:3](3:2:1z4 A2 (6:5:1z4|
+[V:1][cA,A]/ (3:2:5[Cc] z/4 [dD] d2- d z/ G3/2 z/ d/[dD]/ z/|[V:2]z/ A3/2 z/ (3:2:7E z/4 E2 z [gd] z2 z|[V:3]z2 z/ e2 (3:2:2g z2 z3/2|
+[V:1]D2 (3:2:2[Dd] z/ d d3/2 z/ [dad'] z|[V:2]z/ (3:2:4d z2 [Dd] z2 z/ [ad']/ (12:7:3z2 [d'AaBb] z|[V:3]z d z6|
+[V:1]b[aA]/ z/ [Aa][Af]/f f/(3:2:1[Ff] z [fF]/ (3:2:1z/ f/-|[V:2]z [BA]/ z3/2 F2 z/ (3:2:2f2 z2|
+[V:1](3:2:1[fFf]/4 (3:2:1[Ff]3/4[Ff] (3:2:2z/ [Aa][baB] (3z/ [Bb] [aA]2 z/ B3/2-|[V:2](3:2:2z2 A z7/2 [aA] (3:2:4z/4 b/-b z/|[V:3]z15/2 [baA]/-|
+[V:1]B/ [baAAd'B]/ [Ad'B]/[dd']/ [bd'][Aa]3/2 z/ (3:2:4f z/ [bAa]2 [fFA]-|[V:2]z7/2 b/ [fF]/ (6:5:1z F (6:5:1z2|
+[V:1](3:2:1[fFA]/ x/6 [aA] z/ b2 (3:2:1[dd'][dd']/ (3z/ d'- d'/ z/ [df']|[V:2](3:2:1z2 B3/2 (3z/4 [d'd]/-[d'd] z2 d z|[V:3](3:2:2z2 b d' z4 z|
+[V:1](3:2:5c' z c' b2 z/4 [Bd']3/2 z/ (3:2:1[Bb] z/ (3:2:1c'2-|[V:2]z/ (3:2:4[cc'] z B z/ b3/2 z3 [Bb]/-|[V:3]z2 z/ B/B/ z4 z/|
+[V:1](3:2:1[c'b]/4 [bBb]5/6(3:2:6[aA] z f2 z [aA] z/4 [c'Bb] (3:2:1z [bB]|[V:2]z3/2 F2 (3:2:2F z2 z/ [aA] z|[V:3]z3/2 f/ z/ [de]/ z/ f z7/2|
+[V:1](3:2:11dba- a2 [Aa] [aA][Aa]-[Aa]/ z/ [Aa]-[Aa]/[Aa]|[V:2]z2 z/ (3:2:2A z2 z (3:2:2[Aa] z2 z/|
+[V:1]z/ (3:2:2a4 z/4 =c/ (6:5:3z a z2 e3/2|[V:2]z/ A A3 (24:17:2z4 [Bc]|
+[V:1](3:2:13[BD] z [A,Ae] [AA,] z [F,B]- [F,B]/ z/4 A,/-A,/ z/4 [dD]/- [dD]4-|[V:2]z4 z/ (3:2:2A2 z4|
+[V:1](12:11:1[dDAd]2 [Ad]3/2 [Ad]/ z3/2 (3[Ee]2 z E,-|[V:2](3:2:4z2 D,4- D, z2 e z/|
+[V:1](3:2:1E,/ x/6 (3:2:6f z/4 [Aa]2 z/ A2 z/4 [Ab]/ z/ c (3:2:2d z|[V:2]z (3:2:2f z A/ z [Fb]/ z2 z/ [DAD,]|[V:3]z2 z/ a z4 z/|
+[V:1]^d/ z/ (3:2:2e2 z/ E (3z/ E[Eb][bE] (3z/4 [a=dd']/-[add'][Bd']/-|[V:2]z E3/2 (3:2:4z/4 e/- e2 z4|[V:3]z2 (3:2:2e z2 z4|
+[V:1][Bd']/ AA z [Af] (3E4 z/4 [eE]-|[V:2](3z a2- a/4 z2 z/ e (6:5:1z d3/2-|[V:3]z2 [aA] z2 z/ [ef]/ z2|
+[V:1](3:2:1[eEfFe]/ (3:2:1[fFed]/ d/6 x/ (3:2:1[Ff] f[Aa] b[Aa]/ z/ [Bb]d'|[V:2]z2 F3/2 z4 [aA]/-|
+[V:1][aA]/ (3a z/ [Aac'] z/ [Ad'f] (3:2:12z/ a-a/ z/ A- A/ z/4 [Aa]/-[Aa]/ z/4 F/-F/-|[V:2](3:2:1z [Aa]/ (12:7:1z4 [eEA]/ z/ (3:2:2[fF] z2 z3/2|
+[V:1](3:2:1F2 [^gcF] (3z/4 [Aa]/-[Aa] z (3:2:2[Eec] z B(3:2:2A z/|[V:2]z3 c3/2 z/ (3:2:2[BB,]2 z2 A/-|
+[V:1](24:17:1[AB]4 x/6 D2 (3:2:4z/ [Dd]- [Dd]/ z [dA]-|[V:2]z3 (3:2:2d z d z/ d/ z/ (3:2:2f z/|[V:3]z7/2 d/ z3 D,-|[V:4]z15/2 D/-|
+[V:1][dAd] [dDD,-]2/3 [D,-E]3/2 [ED,]4/3 [eE,]<e (3:2:4z/4 A/-A z/|[V:2]z3 e z2 (3:2:2f z2|[V:3]z7/2 e/ z4|
+[V:1][Aa]3/2[AaF] (3z/4 D/- D2 z/ [Ac] (3z/ d-d/e|[V:2](3:2:4z A,2- A,/4 z d z2 z/ E3/2-|[V:3]z b/ z/ (3:2:4a z [=f''cc'] z2 z2 z/|
+[V:1][Ee]/ (3:2:2e/4 z2 f/c<c (3:2:2[Ee]2 z [Ff]3/2|[V:2]z/ E3/2 z2 z/ c/ z/ e/ z2|[V:3]z/ (3:2:2e z2 z4 z3/2|
+[V:1]c (3:2:8z/ c- c/ z/4 E/- E2 [Ee] z/ e E2-|[V:2](3:2:2z C2 z/ e z E3/2 e z/ e/-|[V:3](6:5:2z4 e z/ (3:2:2e z2 z3/2|
+[V:1]E/ [eB]/ (3:2:4B/4 z e z/ [fF]/ z/ (3:2:4[Ff] [fF]2 B z B/-|[V:2](3:2:1z ^d (6:5:2z [Ff] z3/2 f'/ (3z/ [cf] z/ [B,FB]/ z|
+[V:1](6:5:1[BF] (3:2:4F3/4 z/4 F z B (3:2:2[cC] z c/ (3z/4 E/- E2|[V:2]ff/[fB,B] z2 (3:2:2c z e2-|[V:3]z15/2 E/-|
+[V:1](3:2:1[ea] [aE]5/6 [EBb]7/6 x/3 (3:2:2[Aa] z [Aa] E2 z/|[V:2]z2 [ba]/ z [FAf] z/ A3/2 (6:5:2z E,|[V:3]z4 z3/2 (3e z2 E-|[V:4]z6 (3:2:2e2 z|
+[V:1](3:2:1[EaE] (3[aE]3/4 z/4 [baA] b/b z (3:2:2a z/ G2 z/|[V:2]z3 (3:2:2B z b z2 z/|[V:3](6:5:1z4 [bB]3/2 (24:19:1z4|
+[V:1]aa (3:2:1a2 [Ff] (3:2:6z/ [fF][fF] f z f|[V:2]A4 (3:2:2[Ff] z2 z/ FF/-|
+[V:1]F/ [fF]F/ z/ F2- F/ z2 z/ g/-|[V:2](3:2:1z2 f2 f (12:11:1z4|
+[V:1]g/ x/ A3/2 (3:2:6z/4 A/-A/[Aa] [Aa][Aa] A2 (3z/4 a/-a/4-|[V:2]z a2- a/ z2 (3:2:1a z/ [aA]/ (6:5:1z|[V:3]z6 (3:2:2a z2|
+[V:1](3:2:1[aAa]/4 [Aa]5/6[aA] (3:2:1z A (6:5:3z A z A2-|[V:2](3:2:5z A z z a8-|[V:3]z7/2 A/ z A/ z2 z/|
+[V:1][AA]2 [Aa]/ (3:2:1[aA,]29/4 x2/3|[V:2]z2 z/ A z2 A z3/2|
+[V:1]A,3/2 z4 z2 z/|][V:2]A z7|]
