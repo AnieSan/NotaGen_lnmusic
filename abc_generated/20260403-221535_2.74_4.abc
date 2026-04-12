@@ -1,0 +1,40 @@
+X:1
+T:Seed
+C:User
+%%score ( 1 2 3 4 5 )
+L:1/8
+Q:1/4=120
+M:4/4
+K:none
+V:1 treble
+V:2 treble
+V:3 treble
+V:4 treble
+V:5 treble
+V:1
+E E G | G2 | A G E | C2 |
+V:2
+x8 | x8 | x8 | x8 |
+V:3
+x8 | x8 | x8 | x8 |
+V:4
+x8 | x8 | x8 | x8 |
+V:5
+x8 | x8 | x8 | x8 |
+[V:1]B x7||[V:1]B x7||[V:2]x8||[V:2]x8||[V:3]x8||[V:3]x8||[V:4]x8||[V:4]x8||[V:5]x8||[V:5]x8||
+[V:1]Bc B2 G G2 x|[V:1]Bc B2 G G2 x|[V:2]x8|[V:2]x8|[V:3]x8|[V:3]x8|[V:4]x8|[V:4]x8|[V:5]x8|[V:5]x8|
+[V:1]GG F E2 E EF F2 x||[V:1]GG F E2 E EF F2 x||[V:2]x11||[V:2]x11||[V:3]x11||[V:3]x11||[V:4]x11||[V:4]x11||[V:5]x11||[V:5]x11||
+[V:1]BB B G G2 x|[V:1]BB B G G2 x|[V:2]x7|[V:2]x7|[V:3]x7|[V:3]x7|[V:4]x7|[V:4]x7|[V:5]x7|[V:5]x7|
+[V:1]GG B B c c x2||[V:1]GG B B c c x2||[V:2]x8||[V:2]x8||[V:3]x8||[V:3]x8||[V:4]x8||[V:4]x8||[V:5]x8||[V:5]x8||
+[V:1]B B B cc c2 x|[V:1]B B B cc c2 x|[V:2]x8|[V:2]x8|[V:3]x8|[V:3]x8|[V:4]x8|[V:4]x8|[V:5]x8|[V:5]x8|
+[V:1]cc d e2 ee x|[V:1]cc d e2 ee x|[V:2]x8|[V:2]x8|[V:3]x8|[V:3]x8|[V:4]x8|[V:4]x8|[V:5]x8|[V:5]x8|
+[V:1]ee d c2 x2 c c c2 x|[V:1]ee d c2 x2 c c c2 x|[V:2]x12|[V:2]x12|[V:3]x12|[V:3]x12|[V:4]x12|[V:4]x12|[V:5]x12|[V:5]x12|
+[V:1]cc B2 x2||[V:1]cc B2 x2||[V:2]x6||[V:2]x6||[V:3]x6||[V:3]x6||[V:4]x6||[V:4]x6||[V:5]x6||[V:5]x6||
+[V:1]c x B A2 x A A2||[V:1]c x B A2 x A A2||[V:2]x9||[V:2]x9||[V:3]x9||[V:3]x9||[V:4]x9||[V:4]x9||[V:5]x9||[V:5]x9||
+[V:1]A2 G E2 FG A x||[V:1]A2 G E2 FG A x||[V:2]A AG F x2 AA A||[V:2]A AG F x2 AA A||[V:3]x9||[V:3]x9||[V:4]x9||[V:4]x9||[V:5]x9||[V:5]x9||
+[V:1]A A A2 x GF E2 x|[V:1]A A A2 x GF E2 x|[V:2]x10|[V:2]x10|[V:3]x10|[V:3]x10|[V:4]x10|[V:4]x10|[V:5]x10|[V:5]x10|
+[V:1]EF FF F F F2|[V:1]EF FF F F F2|[V:2]x8|[V:2]x8|[V:3]x8|[V:3]x8|[V:4]x8|[V:4]x8|[V:5]x8|[V:5]x8|
+[V:1]E GF E2 x2|[V:1]E GF E2 x2|[V:2]E x2 E E2|[V:2]E x2 E E2|[V:3]x7|[V:3]x7|[V:4]x7|[V:4]x7|[V:5]x7|[V:5]x7|
+[V:1]EE EE E E2 E2||[V:1]EE EE E E2 E2||[V:2]E x4 E E E E||[V:2]E x4 E E E E||[V:3]x9||[V:3]x9||[V:4]x9||[V:4]x9||[V:5]x9||[V:5]x9||
+[V:1]EG A2 A2 GG A2 A x2|[V:1]EG A2 A2 GG A2 A x2|[V:2]x13|[V:2]x13|[V:3]x13|[V:3]x13|[V:4]x13|[V:4]x13|[V:5]x13|[V:5]x13|
+[V:1]G G2 G G F2 F x||[V:1]G G2 G G F2 F x||[V:2]x9||[V:2]x9||[V:3]x9||[V:3]x9||[V:4]x9||[V:4]x9||[V:5]x9||[V:5]x9||

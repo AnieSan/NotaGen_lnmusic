@@ -1,0 +1,36 @@
+X:1
+T:Seed
+C:User
+%%score ( 1 2 3 4 5 )
+L:1/8
+Q:1/4=120
+M:4/4
+K:none
+V:1 treble
+V:2 treble
+V:3 treble
+V:4 treble
+V:5 treble
+V:1
+E E G | G2 | A G E | C2 |
+V:2
+x8 | x8 | x8 | x8 |
+V:3
+x8 | x8 | x8 | x8 |
+V:4
+x8 | x8 | x8 | x8 |
+V:5
+x8 | x8 | x8 | x8 |
+[V:1]g2 ga gag e2 g||[V:1]g2 ga gag e2 g||[V:2]x10||[V:2]x10||[V:3]x10||[V:3]x10||[V:4]x10||[V:4]x10||[V:5]x10||[V:5]x10||
+[V:1]ge c2 d2 cd ecA G3||[V:1]ge c2 d2 cd ecA G3||[V:2]x14||[V:2]x14||[V:3]x14||[V:3]x14||[V:4]x14||[V:4]x14||[V:5]x14||[V:5]x14||
+[V:1]g2 g gag age c2 e|[V:1]g2 g gag age c2 e|[V:2]x12|[V:2]x12|[V:3]x12|[V:3]x12|[V:4]x12|[V:4]x12|[V:5]E,8 G,4|[V:5]E,8 G,4|
+[V:1]e2 c2 c c c2 G2 c2 e2 d4 c2||[V:1]e2 c2 c c c2 G2 c2 e2 d4 c2||[V:2]x20||[V:2]x20||[V:3]x20||[V:3]x20||[V:4]x20||[V:4]x20||[V:5]C,4 x26||[V:5]C,4 x26||
+[V:1]g2 g g2 e g2 g|[V:1]g2 g g2 e g2 g|[V:2]x9|[V:2]x9|[V:3]x9|[V:3]x9|[V:4]x9|[V:4]x9|[V:5]E,8 G,4|[V:5]E,8 G,4|
+[V:1]e d2 c2 c c2 c4||[V:1]e d2 c2 c c2 c4||[V:2]x12||[V:2]x12||[V:3]x12||[V:3]x12||[V:4]x12||[V:4]x12||[V:5]C,8 x7||[V:5]C,8 x7||
+[V:1]G2 E G2 E G2 G2 G GEG A2 G E4 E3||[V:1]G2 E G2 E G2 G2 G GEG A2 G E4 E3||[V:2]x24||[V:2]x24||[V:3]x24||[V:3]x24||[V:4]x24||[V:4]x24||[V:5]x24||[V:5]x24||
+[V:1]c3 c2 A GAc A4 A2 G A2 c c2 G2 G4|[V:1]c3 c2 A GAc A4 A2 G A2 c c2 G2 G4|[V:2]x27|[V:2]x27|[V:3]x27|[V:3]x27|[V:4]x27|[V:4]x27|[V:5]E,4 x28|[V:5]E,4 x28|
+[V:1]G2 c c c A2 A2 A G2 A c2 G2 G4||[V:1]G2 c c c A2 A2 A G2 A c2 G2 G4||[V:2]x21||[V:2]x21||[V:3]x21||[V:3]x21||[V:4]x21||[V:4]x21||[V:5]C,4 x34||[V:5]C,4 x34||
+[V:1]G2 G2 E2 G A4 G4|[V:1]G2 G2 E2 G A4 G4|[V:2]x15|[V:2]x15|[V:3]x15|[V:3]x15|[V:4]x15|[V:4]x15|[V:5]x15|[V:5]x15|
+[V:1]A3 c A2 G2 E E2|[V:1]A3 c A2 G2 E E2|[V:2]x11|[V:2]x11|[V:3]x11|[V:3]x11|[V:4]x11|[V:4]x11|[V:5]x11|[V:5]x11|
+[V:1]D2 D2 E G2 G E C4|[V:1]D2 D2 E G2 G E C4|[V:2]x13|[V:2]x13|[V:3]x13|[V:3]x13|[V:4]x13|[V:4]x13|[V:5]x13|[V:5]x13|
+[V:1]GG E2 E G2 A2 c2 A c2 d4|][V:1]GG E2 E G2 A2 c2 A c2 d4|][V:2]x18|][V:2]x18|][V:3]x18|][V:3]x18|][V:4]x18|][V:4]x18|][V:5]x18|][V:5]x18|]

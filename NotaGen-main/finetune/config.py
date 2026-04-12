@@ -1,8 +1,9 @@
 import os
 
 # Configuration for the data
-DATA_TRAIN_INDEX_PATH = "E:/aibianqu/notagen/AUGMENTED_FOLDER_train.jsonl"
-DATA_EVAL_INDEX_PATH  = "E:/aibianqu/notagen/AUGMENTED_FOLDER_eval.jsonl"
+# 统一使用相对路径（以运行目录 NotaGen-main/finetune 为基准）
+DATA_TRAIN_INDEX_PATH = "../../AUGMENTED_FOLDER_train.jsonl"
+DATA_EVAL_INDEX_PATH = "../../AUGMENTED_FOLDER_eval.jsonl"
 # Configuration for the model
 PATCH_STREAM = True                                             # Stream training / inference
 PATCH_SIZE = 16                                                # Patch Size
@@ -21,7 +22,7 @@ LOAD_FROM_CHECKPOINT = False                                    # Whether to loa
 WANDB_LOGGING = False                                           # Whether to log to wandb
 WANDB_KEY = '<your_wandb_key>'
 
-PRETRAINED_PATH = "E:/aibianqu/notagen/weights_notagen_pretrain_p_size_16_p_length_2048_p_layers_12_c_layers_3_h_size_768_lr_0.0002_batch_8.pth"                # Path of pretrained weights
+PRETRAINED_PATH = "../../weights_notagen_pretrain_p_size_16_p_length_2048_p_layers_12_c_layers_3_h_size_768_lr_0.0002_batch_8.pth"  # Path of pretrained weights
 EXP_TAG = ''                                            # Experiment tag for name differentiation
 NAME =  EXP_TAG + \
         "_p_size_" + str(PATCH_SIZE) + \
