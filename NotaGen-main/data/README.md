@@ -1,9 +1,13 @@
 ## Data Pre-processing
 
+**本副本目录约定（自动生成路径）**：`2_data_preprocess.py` 中 `ORI_FOLDER` / `INTERLEAVED_FOLDER` / `AUGMENTED_FOLDER` 已默认指向本目录下的 `interim/abc_output`、`interleaved`、`augmented`；索引输出到 `indices/dataset_*.jsonl`。随机划分使用与 **`finetune/config.py` 中 `RANDOM_SEED`** 相同的种子；输入文件按名字排序后再划分，保证可复现。
+
+**固定验证集**：将 `indices/eval_paths_fixed.example.txt` 复制为 **`indices/eval_paths_fixed.txt`**，每行写一个样本的 `path`（与 jsonl 中完全一致）。存在该文件时，所列样本只进入 **`dataset_eval.jsonl`**，其余进入 **`dataset_train.jsonl`**（不再按比例随机划）。
+
 ### Convert from MusicXML
 
-- Navigate to the data folder ```cd data/```
-- Modify the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```1_batch_xml2abc.py```, then run this script:
+- Navigate to ```NotaGen-main/data/```
+- ```1_batch_xml2abc.py``` 默认路径（相对本目录）：输入 **`raw/xml/`**，输出 **`interim/abc_output/`**，日志 **`logs/xml2abc_error_log.txt`**。若需修改，编辑脚本顶部 ```Path``` 变量。
   ```
   python 1_batch_xml2abc.py
   ```
@@ -36,8 +40,8 @@ It's needed to add a line "X:1" before each piece to present the score image in 
 
 ### Convert to MusicXML
 
-- Go to the data folder ```cd data/```
-- Modify the ```ORI_FOLDER``` and ```DES_FOLDER``` in ```3_batch_abc2xml.py```, then run this script:
+- Go to ```NotaGen-main/data/```
+- ```3_batch_abc2xml.py``` 默认路径：输入 **`../runs/exports/abc_generated/`**，输出 **`../runs/exports/xml_generated/`**，日志 **`logs/abc2xml_error_log.txt`**。
   ```
   python 3_batch_abc2xml.py
   ```

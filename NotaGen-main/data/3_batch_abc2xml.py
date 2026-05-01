@@ -1,51 +1,84 @@
-ORI_FOLDER = "E:/aibianqu/notagen/abc_generated"  # Replace with the path to your folder containing standard/interleaved abc files
-DES_FOLDER = "E:/aibianqu/notagen/xml_generated"   # The script will convert the abc files and output musicxml files to this folder
+from pathlib import Path
+
+# 相对 NotaGen-main：ABC 输入与 XML 输出放在 runs/exports/（与 PROJECT_LAYOUT 一致）
+_DATA_DIR = Path(__file__).resolve().parent
+_NG_ROOT = _DATA_DIR.parent
+ORI_FOLDER = str(_NG_ROOT / "runs" / "exports" / "abc_generated")
+DES_FOLDER = str(_NG_ROOT / "runs" / "exports" / "xml_generated")
+_LOG_DIR = _DATA_DIR / "logs"
+_ABC2XML = _DATA_DIR / "abc2xml.py"
 
 import os
+import sys
 import math
 import random
 import subprocess
 from tqdm import tqdm
 from multiprocessing import Pool
 
+
+def _decode_subprocess_stdout(raw: bytes) -> str:
+    if not raw:
+        return ""
+    for enc in ("utf-8", "utf-8-sig", "gbk", "cp936", "mbcs"):
+        try:
+            return raw.decode(enc)
+        except UnicodeDecodeError:
+            continue
+    return raw.decode("utf-8", errors="replace")
+
+
 def convert_abc2xml(file_list):
-    cmd = 'python abc2xml.py '
+    py = sys.executable
+    cmd_base = f'"{py}" "{_ABC2XML}" '
+    err_log = _LOG_DIR / "abc2xml_error_log.txt"
     for file in tqdm(file_list):
-        filename = file.split('/')[-1]  # Extract file name
+        filename = file.split("/")[-1]
         os.makedirs(DES_FOLDER, exist_ok=True)
 
         try:
-            p = subprocess.Popen(cmd + '"' + file + '"', stdout=subprocess.PIPE, shell=True)
-            result = p.communicate()
-            output = result[0].decode('utf-8')
+            p = subprocess.Popen(
+                cmd_base + '"' + file + '"',
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                shell=True,
+            )
+            out_b, err_b = p.communicate()
+            output = _decode_subprocess_stdout(out_b)
 
-            if output == '':
-                with open("logs/abc2xml_error_log.txt", "a", encoding="utf-8") as f:
-                    f.write(file + '\n')
+            if not output.strip():
+                err_txt = _decode_subprocess_stdout(err_b).strip() if err_b else ""
+                with open(err_log, "a", encoding="utf-8") as f:
+                    f.write(file + (f" | stderr: {err_txt[:500]}" if err_txt else " (empty stdout)") + "\n")
                 continue
-            else:
-                output_path = f"{DES_FOLDER}/" + ".".join(filename.split(".")[:-1]) + ".xml"
-                with open(output_path, 'w', encoding='utf-8') as f:
-                    f.write(output)
+            output_path = f"{DES_FOLDER}/" + ".".join(filename.split(".")[:-1]) + ".xml"
+            with open(output_path, "w", encoding="utf-8") as f:
+                f.write(output)
         except Exception as e:
-            with open("logs/abc2xml_error_log.txt", "a", encoding="utf-8") as f:
-                f.write(file + ' ' + str(e) + '\n')
-            pass
+            with open(err_log, "a", encoding="utf-8") as f:
+                f.write(file + " " + str(e) + "\n")
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
+    import sys
+
+    _fin = Path(__file__).resolve().parent.parent / "finetune"
+    if str(_fin) not in sys.path:
+        sys.path.insert(0, str(_fin))
+    from config import RANDOM_SEED
+
     file_list = []
-    os.makedirs("logs", exist_ok=True)
+    _LOG_DIR.mkdir(parents=True, exist_ok=True)
 
-    # Traverse the specified folder for ABC files
     for root, dirs, files in os.walk(ORI_FOLDER):
-        for file in files:
+        for file in sorted(files):
             if not file.endswith(".abc"):
                 continue
             filename = os.path.join(root, file).replace("\\", "/")
             file_list.append(filename)
 
-    # Prepare for multiprocessing
     file_lists = []
+    random.seed(RANDOM_SEED)
     random.shuffle(file_list)
     for i in range(os.cpu_count()):
         start_idx = int(math.floor(i * len(file_list) / os.cpu_count()))

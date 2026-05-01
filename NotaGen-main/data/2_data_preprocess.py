@@ -1,7 +1,24 @@
-ORI_FOLDER = 'E:/aibianqu/notagen/abc_output'  # Replace with the path to your folder containing standard ABC notation files
-INTERLEAVED_FOLDER = 'E:/aibianqu/notagen/INTERLEAVED_FOLDER'   # Output interleaved ABC notation files to this folder
-AUGMENTED_FOLDER = 'E:/aibianqu/notagen/AUGMENTED_FOLDER'   # Output key-augmented and rest-omitted ABC notation files to this folder
-EVAL_SPLIT = 0.1    # The ratio of eval data 
+from __future__ import annotations
+
+from pathlib import Path
+import sys
+from typing import Optional, Set
+
+# 所有路径相对本仓库：以 NotaGen-main 为工程根，数据在 NotaGen-main/data 下
+_DATA_DIR = Path(__file__).resolve().parent
+_REPO_ROOT = _DATA_DIR.parents[1]  # notagen（仓库根）
+
+_FINETUNE_DIR = _DATA_DIR.parent / "finetune"
+if str(_FINETUNE_DIR.resolve()) not in sys.path:
+    sys.path.insert(0, str(_FINETUNE_DIR.resolve()))
+from config import RANDOM_SEED
+
+ORI_FOLDER = str(_DATA_DIR / "interim" / "abc_output")
+INTERLEAVED_FOLDER = str(_DATA_DIR / "interleaved")
+AUGMENTED_FOLDER = str(_DATA_DIR / "augmented")
+EVAL_SPLIT = 0.1  # 验证集比例（当未使用固定验证集清单时）
+# 固定验证集：若存在下列文件，则其中列出的 path（与 jsonl 中完全一致）仅进入 eval，其余进 train
+_EVAL_FIXED_FILE = _DATA_DIR / "indices" / "eval_paths_fixed.txt"
 
 import os
 import re
@@ -141,10 +158,23 @@ def abc_preprocess_pipeline(abc_path):
 
 
 
+def _load_fixed_eval_paths() -> Optional[Set[str]]:
+    if not _EVAL_FIXED_FILE.is_file():
+        return None
+    out = set()
+    for line in _EVAL_FIXED_FILE.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        out.add(line.replace("\\", "/"))
+    return out if out else None
+
+
 if __name__ == '__main__':
-    
     data = []
-    file_list = os.listdir(ORI_FOLDER)
+    file_list = sorted(
+        f for f in os.listdir(ORI_FOLDER) if f.lower().endswith(".abc")
+    )
     for file in tqdm(file_list):
         ori_abc_path = os.path.join(ORI_FOLDER, file)
         try:
@@ -153,18 +183,43 @@ if __name__ == '__main__':
             print(ori_abc_path, 'failed to pre-process.')
             continue
 
-        data.append({
-            'path': os.path.join(AUGMENTED_FOLDER, abc_name),
-            'key': ori_key
-        })
+        aug_base = os.path.join(AUGMENTED_FOLDER, abc_name)
+        try:
+            path_for_index = str(Path(aug_base).resolve().relative_to(_REPO_ROOT)).replace("\\", "/")
+        except ValueError:
+            path_for_index = aug_base.replace("\\", "/")
+        data.append({"path": path_for_index, "key": ori_key})
 
-    random.shuffle(data)
-    eval_data = data[ : int(EVAL_SPLIT * len(data))]
-    train_data = data[int(EVAL_SPLIT * len(data)) : ]
+    data.sort(key=lambda x: x["path"])
+    fixed_eval = _load_fixed_eval_paths()
+    if fixed_eval is not None:
+        all_paths = {d["path"] for d in data}
+        missing = fixed_eval - all_paths
+        if missing:
+            print(
+                "警告: eval_paths_fixed.txt 中有下列 path 未在本次预处理结果中找到（请核对路径是否完全一致）:",
+                *sorted(missing)[:20],
+                sep="\n  ",
+            )
+        train_data = [d for d in data if d["path"] not in fixed_eval]
+        eval_data = [d for d in data if d["path"] in fixed_eval]
+        if not eval_data:
+            raise SystemExit("eval_paths_fixed.txt 已指定但与数据无交集，请检查 path 是否与 jsonl 字段一致。")
+        if not train_data:
+            raise SystemExit("固定验证集占满全部样本，train 为空。")
+    else:
+        rng = random.Random(RANDOM_SEED)
+        shuffled = list(data)
+        rng.shuffle(shuffled)
+        n_eval = max(1, int(EVAL_SPLIT * len(shuffled))) if len(shuffled) > 1 else 0
+        eval_data = shuffled[:n_eval]
+        train_data = shuffled[n_eval:]
 
-    data_index_path = AUGMENTED_FOLDER + '.jsonl'
-    eval_index_path = AUGMENTED_FOLDER + '_eval.jsonl'
-    train_index_path = AUGMENTED_FOLDER + '_train.jsonl'
+    _indices = _DATA_DIR / "indices"
+    _indices.mkdir(parents=True, exist_ok=True)
+    data_index_path = str(_indices / "dataset_all.jsonl")
+    eval_index_path = str(_indices / "dataset_eval.jsonl")
+    train_index_path = str(_indices / "dataset_train.jsonl")
 
 
     with open(data_index_path, 'w', encoding='utf-8') as w:

@@ -1,0 +1,61 @@
+# 模型权重与检查点（不上传）
+*.pth
+*.pt
+*.ckpt
+*.bin
+NotaGen-main/weights/*
+!NotaGen-main/weights/.gitkeep
+
+# 训练/推理运行产物（可能含 merged 权重）
+NotaGen-main/runs/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# 毕设与本地论文工程
+sysu-thesis-*/
+答辩/
+
+# LaTeX 辅助（根目录误生成）
+main.aux
+main.fdb_latexmk
+main.fls
+main.log
+main.out
+main.toc
+main.lof
+main.lot
+
+# 备份与压缩包
+*.rar
+*.zip
+_duplicate_root_modules_*.zip
+_archive_pre_layout_*/
+
+# IDE
+.idea/
+
+# 环境
+.env
+.venv/
+venv/
+
+# 数据目录占位：跟踪脚本与目录结构，不包含具体语料（本地生成）
+NotaGen-main/data/raw/xml/*
+!NotaGen-main/data/raw/xml/.gitkeep
+NotaGen-main/data/interim/abc_output/*
+!NotaGen-main/data/interim/abc_output/.gitkeep
+NotaGen-main/data/interleaved/*
+!NotaGen-main/data/interleaved/.gitkeep
+NotaGen-main/data/augmented/*
+!NotaGen-main/data/augmented/.gitkeep
+NotaGen-main/data/logs/*
+!NotaGen-main/data/logs/.gitkeep
+NotaGen-main/data/indices/*.jsonl
+NotaGen-main/data/indices/eval_paths_fixed.txt

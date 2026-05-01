@@ -1,0 +1,6 @@
+# 固定验证集：复制本文件为 eval_paths_fixed.txt（与脚本同目录 indices/）
+# 每行一条 jsonl 中的 path 字段，须完全一致（正斜杠）。以 # 开头的行为注释。
+#
+# 示例（请按你的 dataset_all.jsonl 修改）:
+# NotaGen-main/data/augmented/某曲目目录名
+# NotaGen-main/data/augmented/另一首
